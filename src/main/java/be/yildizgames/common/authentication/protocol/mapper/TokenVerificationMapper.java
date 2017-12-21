@@ -57,7 +57,7 @@ public class TokenVerificationMapper implements ObjectMapper<TokenVerification> 
     @Override
     public String to(TokenVerification tokenVerification) {
         assert tokenVerification != null;
-        return PlayerIdMapper.getInstance().to(tokenVerification.playerId)
+        return PlayerIdMapper.getInstance().to(tokenVerification.userId)
                 + Separator.VAR_SEPARATOR
                 + BooleanMapper.getInstance().to(tokenVerification.authenticated);
     }
