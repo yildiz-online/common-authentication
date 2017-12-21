@@ -51,12 +51,12 @@
     </dependency>
     <dependency>
       <groupId>be.yildiz-games</groupId>
-      <artifactId>common-mapping</artifactId>
+      <artifactId>common-exception</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>be.yildiz-games</groupId>
-      <artifactId>common-model</artifactId>
+      <artifactId>common-mapping</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>

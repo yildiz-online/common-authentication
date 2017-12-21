@@ -22,44 +22,10 @@
  *
  */
 
-package be.yildizgames.common.authentication.protocol;
-
-import be.yildizgames.common.authentication.UserId;
+package be.yildizgames.common.authentication;
 
 /**
  * @author Grégory Van den Borre
  */
-public class TokenVerification {
-
-    public final UserId userId;
-
-    public final boolean authenticated;
-
-    public TokenVerification(UserId userId, boolean authenticated) {
-        super();
-        assert userId != null;
-        this.userId = userId;
-        this.authenticated = authenticated;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        TokenVerification that = (TokenVerification) o;
-
-        return authenticated == that.authenticated && userId.equals(that.userId);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = userId.hashCode();
-        result = 31 * result + (authenticated ? 1 : 0);
-        return result;
-    }
+public class UserNotFoundException extends Exception {
 }

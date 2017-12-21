@@ -22,24 +22,22 @@
  *
  */
 
-package be.yildizgames.common.authentication.protocol;
+package be.yildizgames.common.authentication;
 
-import be.yildizgames.common.authentication.UserId;
+import java.util.Objects;
 
 /**
  * @author Grégory Van den Borre
  */
-public class TokenVerification {
+public class UserId {
 
-    public final UserId userId;
+    public static final UserId ANONYMOUS = new UserId(-1);
 
-    public final boolean authenticated;
+    public final int value;
 
-    public TokenVerification(UserId userId, boolean authenticated) {
+    public UserId(int value) {
         super();
-        assert userId != null;
-        this.userId = userId;
-        this.authenticated = authenticated;
+        this.value = value;
     }
 
     @Override
@@ -50,16 +48,12 @@ public class TokenVerification {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
-        TokenVerification that = (TokenVerification) o;
-
-        return authenticated == that.authenticated && userId.equals(that.userId);
+        UserId userId = (UserId) o;
+        return value == userId.value;
     }
 
     @Override
     public int hashCode() {
-        int result = userId.hashCode();
-        result = 31 * result + (authenticated ? 1 : 0);
-        return result;
+        return Objects.hash(value);
     }
 }

@@ -24,7 +24,7 @@
 
 package be.yildizgames.common.authentication.protocol;
 
-import be.yildizgames.common.model.PlayerId;
+import be.yildizgames.common.authentication.UserId;
 
 import java.util.Arrays;
 
@@ -38,7 +38,7 @@ public final class Token {
     /**
      * User associated to the token.
      */
-    private final PlayerId id;
+    private final UserId id;
 
     /**
      * Timestamp when the authentication occurred.
@@ -55,7 +55,7 @@ public final class Token {
      */
     private final Status status;
 
-    private Token(PlayerId id, long authenticationTime, int key, Status status) {
+    private Token(UserId id, long authenticationTime, int key, Status status) {
         assert id != null;
         assert status != null;
         if(authenticationTime < 0) {
@@ -75,7 +75,7 @@ public final class Token {
      * @param key                Unique associated key.
      * @return A token with the user information, the authentication time, the authentication key and an authenticated status.
      */
-    public static Token authenticated(final PlayerId id, final long authenticationTime, final int key) {
+    public static Token authenticated(final UserId id, final long authenticationTime, final int key) {
         return new Token(id, authenticationTime, key, Status.AUTHENTICATED);
     }
 
@@ -85,7 +85,7 @@ public final class Token {
      * @return A token with no user information, no authentication time, no authentication key and a not authenticated status.
      */
     public static Token authenticationFailed() {
-        return new Token(PlayerId.WORLD, 0, -1, Status.NOT_AUTHENTICATED);
+        return new Token(UserId.ANONYMOUS, 0, -1, Status.NOT_AUTHENTICATED);
     }
 
     /**
@@ -94,7 +94,7 @@ public final class Token {
      * @return A token with no user information, no authentication time, no authentication key and a banned status.
      */
     public static Token banned() {
-        return new Token(PlayerId.WORLD, 0, -1, Status.BANNED);
+        return new Token(UserId.ANONYMOUS, 0, -1, Status.BANNED);
     }
 
     /**
@@ -103,10 +103,10 @@ public final class Token {
      * @return A token with no user information, no authentication time, no authentication key and a not found status.
      */
     public static Token notFound() {
-        return new Token(PlayerId.WORLD, 0, -1, Status.NOT_FOUND);
+        return new Token(UserId.ANONYMOUS, 0, -1, Status.NOT_FOUND);
     }
 
-    public static Token any(final PlayerId id, final int key, final Status status) {
+    public static Token any(final UserId id, final int key, final Status status) {
         return new Token(id, 0, key, status);
     }
 
@@ -117,7 +117,7 @@ public final class Token {
         return this.status == Status.AUTHENTICATED;
     }
 
-    public PlayerId getId() {
+    public UserId getId() {
         return id;
     }
 
@@ -190,7 +190,7 @@ public final class Token {
             return Arrays.stream(Status.values())
                     .filter(s -> s.value == v)
                     .findFirst()
-                    .orElseThrow(UnhandledSwitchCaseException::new);
+                    .orElseThrow(IllegalArgumentException::new);
         }
     }
 
