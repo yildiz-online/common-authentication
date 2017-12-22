@@ -24,7 +24,7 @@
 
 package be.yildizgames.common.authentication.protocol.mapper;
 
-import be.yildizgames.common.authentication.protocol.Token;
+import be.yildizgames.common.authentication.Token;
 import be.yildizgames.common.mapping.*;
 
 /**

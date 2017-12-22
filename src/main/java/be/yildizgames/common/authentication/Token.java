@@ -22,7 +22,7 @@
  *
  */
 
-package be.yildizgames.common.authentication.protocol;
+package be.yildizgames.common.authentication;
 
 import be.yildizgames.common.model.PlayerId;
 
