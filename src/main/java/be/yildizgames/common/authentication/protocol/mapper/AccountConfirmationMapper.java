@@ -22,28 +22,42 @@
  *
  */
 
-package be.yildizgames.common.authentication.protocol;
+package be.yildizgames.common.authentication.protocol.mapper;
+
+import be.yildizgames.common.authentication.protocol.AccountConfirmationDto;
+import be.yildizgames.common.mapping.MappingException;
+import be.yildizgames.common.mapping.ObjectMapper;
+import be.yildizgames.common.mapping.Separator;
 
 /**
  * @author Grégory Van den Borre
  */
-public class TemporaryAccountValidationDto {
+public class AccountConfirmationMapper implements ObjectMapper<AccountConfirmationDto> {
 
-    private final String email;
+    private static final AccountConfirmationMapper INSTANCE = new AccountConfirmationMapper();
 
-    private final String validationToken;
-
-    public TemporaryAccountValidationDto(String email, String validationToken) {
+    private AccountConfirmationMapper() {
         super();
-        this.email = email;
-        this.validationToken = validationToken;
     }
 
-    public String getEmail() {
-        return this.email;
+    public static AccountConfirmationMapper getInstance() {
+        return INSTANCE;
     }
 
-    public String getValidationToken() {
-        return this.validationToken;
+    @Override
+    public AccountConfirmationDto from(String s) throws MappingException {
+        assert s != null;
+        try {
+            String[] v = s.split(Separator.OBJECTS_SEPARATOR);
+            return new AccountConfirmationDto(v[0], v[1]);
+        } catch (IndexOutOfBoundsException e) {
+            throw new MappingException(e);
+        }
+    }
+
+    @Override
+    public String to(AccountConfirmationDto dto) {
+        assert dto != null;
+        return dto.getLogin() + Separator.OBJECTS_SEPARATOR + dto.getToken();
     }
 }

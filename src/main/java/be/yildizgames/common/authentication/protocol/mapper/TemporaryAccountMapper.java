@@ -24,7 +24,9 @@
 
 package be.yildizgames.common.authentication.protocol.mapper;
 
-import be.yildizgames.common.authentication.protocol.TemporaryAccountDto;
+import be.yildizgames.common.authentication.CredentialException;
+import be.yildizgames.common.authentication.TemporaryAccount;
+import be.yildizgames.common.authentication.TemporaryAccountValidationException;
 import be.yildizgames.common.mapping.MappingException;
 import be.yildizgames.common.mapping.ObjectMapper;
 import be.yildizgames.common.mapping.Separator;
@@ -32,7 +34,7 @@ import be.yildizgames.common.mapping.Separator;
 /**
  * @author Grégory Van den Borre
  */
-public class TemporaryAccountMapper implements ObjectMapper<TemporaryAccountDto> {
+public class TemporaryAccountMapper implements ObjectMapper<TemporaryAccount> {
 
     private static final TemporaryAccountMapper INSTANCE = new TemporaryAccountMapper();
 
@@ -45,18 +47,18 @@ public class TemporaryAccountMapper implements ObjectMapper<TemporaryAccountDto>
     }
 
     @Override
-    public TemporaryAccountDto from(final String s) throws MappingException {
+    public TemporaryAccount from(final String s) throws MappingException {
         assert s != null;
         try {
             String[] v = s.split(Separator.OBJECTS_SEPARATOR);
-            return new TemporaryAccountDto(v[0], v[1], v[2]);
-        } catch (IndexOutOfBoundsException e) {
+            return TemporaryAccount.create(v[0], v[1], v[2]);
+        } catch (IndexOutOfBoundsException | TemporaryAccountValidationException e) {
             throw new MappingException(e);
         }
     }
 
     @Override
-    public String to(final TemporaryAccountDto dto) {
+    public String to(final TemporaryAccount dto) {
         assert dto != null;
         return dto.getLogin()
                 + Separator.OBJECTS_SEPARATOR

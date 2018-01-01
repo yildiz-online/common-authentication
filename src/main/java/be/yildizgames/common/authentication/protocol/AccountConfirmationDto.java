@@ -22,42 +22,49 @@
  *
  */
 
-package be.yildizgames.common.authentication.protocol.mapper;
-
-import be.yildizgames.common.authentication.protocol.AccountValidationDto;
-import be.yildizgames.common.mapping.MappingException;
-import be.yildizgames.common.mapping.ObjectMapper;
-import be.yildizgames.common.mapping.Separator;
+package be.yildizgames.common.authentication.protocol;
 
 /**
  * @author Grégory Van den Borre
  */
-public class AccountValidationMapper implements ObjectMapper<AccountValidationDto> {
+public class AccountConfirmationDto {
 
-    private static final AccountValidationMapper INSTANCE = new AccountValidationMapper();
+    private final String login;
 
-    private AccountValidationMapper() {
-        super();
+    private final String token;
+
+    public AccountConfirmationDto(String login, String token) {
+        this.login = login;
+        this.token = token;
     }
 
-    public static AccountValidationMapper getInstance() {
-        return INSTANCE;
+    public String getLogin() {
+        return this.login;
+    }
+
+    public String getToken() {
+        return this.token;
+    }
+
+
+    @Override
+    public int hashCode() {
+        int result = login.hashCode();
+        result = 31 * result + token.hashCode();
+        return result;
     }
 
     @Override
-    public AccountValidationDto from(String s) throws MappingException {
-        assert s != null;
-        try {
-            String[] v = s.split(Separator.OBJECTS_SEPARATOR);
-            return new AccountValidationDto(v[0], v[1]);
-        } catch (IndexOutOfBoundsException e) {
-            throw new MappingException(e);
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
         }
-    }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
-    @Override
-    public String to(AccountValidationDto dto) {
-        assert dto != null;
-        return dto.getLogin() + Separator.OBJECTS_SEPARATOR + dto.getToken();
+        AccountConfirmationDto that = (AccountConfirmationDto) o;
+
+        return login.equals(that.login) && token.equals(that.token);
     }
 }
