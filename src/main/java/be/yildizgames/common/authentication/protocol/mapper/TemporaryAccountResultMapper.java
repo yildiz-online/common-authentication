@@ -58,7 +58,6 @@ public class TemporaryAccountResultMapper implements ObjectMapper<TemporaryAccou
             dto.setInvalidLogin(BooleanMapper.getInstance().from(v[4]));
             dto.setInvalidPassword(BooleanMapper.getInstance().from(v[5]));
             dto.setTechnicalIssue(BooleanMapper.getInstance().from(v[6]));
-            dto.setToken(v[7]);
             return dto;
         } catch (IndexOutOfBoundsException e) {
             throw new MappingException(e);
@@ -80,8 +79,6 @@ public class TemporaryAccountResultMapper implements ObjectMapper<TemporaryAccou
                 + Separator.OBJECTS_SEPARATOR
                 + BooleanMapper.getInstance().to(dto.isInvalidPassword())
                 + Separator.OBJECTS_SEPARATOR
-                + BooleanMapper.getInstance().to(dto.isTechnicalIssue())
-                + Separator.OBJECTS_SEPARATOR
-                + dto.getToken();
+                + BooleanMapper.getInstance().to(dto.isTechnicalIssue());
     }
 }
