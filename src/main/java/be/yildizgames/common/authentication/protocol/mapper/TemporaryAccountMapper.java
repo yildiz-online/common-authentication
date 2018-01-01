@@ -52,7 +52,7 @@ public class TemporaryAccountMapper implements ObjectMapper<TemporaryAccount> {
         try {
             String[] v = s.split(Separator.OBJECTS_SEPARATOR);
             return TemporaryAccount.create(v[0], v[1], v[2]);
-        } catch (IndexOutOfBoundsException | TemporaryAccountValidationException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw new MappingException(e);
         }
     }

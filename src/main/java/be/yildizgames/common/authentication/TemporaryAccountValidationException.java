@@ -27,12 +27,15 @@ public class TemporaryAccountValidationException extends BusinessException {
 
     private final List<String> errors;
 
+    private final List<AuthenticationChecker.AuthenticationError> exceptions = Lists.newList();
+
     public TemporaryAccountValidationException(final CredentialException ex) {
         super(ex);
         this.errors = ex.getErrors()
                 .stream()
                 .map(e -> e.messageKey)
                 .collect(Collectors.toList());
+        this.exceptions.addAll(ex.getErrors());
     }
 
     public TemporaryAccountValidationException(final String error) {
@@ -42,5 +45,9 @@ public class TemporaryAccountValidationException extends BusinessException {
 
     public List<String> getErrors() {
         return errors;
+    }
+
+    public List<AuthenticationChecker.AuthenticationError> getExceptions() {
+        return exceptions;
     }
 }

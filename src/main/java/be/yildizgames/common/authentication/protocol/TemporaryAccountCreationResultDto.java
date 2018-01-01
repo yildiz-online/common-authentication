@@ -36,7 +36,14 @@ public class TemporaryAccountCreationResultDto {
     private boolean invalidLogin;
     private boolean invalidPassword;
     private boolean technicalIssue;
-    private String token = "null";
+
+    public TemporaryAccountCreationResultDto() {
+        super();
+    }
+
+    public static TemporaryAccountCreationResultDto success() {
+        return new TemporaryAccountCreationResultDto();
+    }
 
     public void setEmailMissing(boolean missing) {
         this.emailMissing = missing;
@@ -64,10 +71,6 @@ public class TemporaryAccountCreationResultDto {
 
     public void setTechnicalIssue(boolean issue) {
         this.technicalIssue = issue;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
     }
 
     public boolean isEmailMissing() {
@@ -108,10 +111,6 @@ public class TemporaryAccountCreationResultDto {
                 || this.isEmailExisting();
     }
 
-    public String getToken() {
-        return token;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -123,7 +122,7 @@ public class TemporaryAccountCreationResultDto {
 
         TemporaryAccountCreationResultDto that = (TemporaryAccountCreationResultDto) o;
 
-        return emailMissing == that.emailMissing && emailInvalid == that.emailInvalid && accountExisting == that.accountExisting && emailExisting == that.emailExisting && invalidLogin == that.invalidLogin && invalidPassword == that.invalidPassword && technicalIssue == that.technicalIssue && token.equals(that.token);
+        return emailMissing == that.emailMissing && emailInvalid == that.emailInvalid && accountExisting == that.accountExisting && emailExisting == that.emailExisting && invalidLogin == that.invalidLogin && invalidPassword == that.invalidPassword && technicalIssue == that.technicalIssue;
     }
 
     @Override
@@ -135,7 +134,6 @@ public class TemporaryAccountCreationResultDto {
         result = 31 * result + (invalidLogin ? 1 : 0);
         result = 31 * result + (invalidPassword ? 1 : 0);
         result = 31 * result + (technicalIssue ? 1 : 0);
-        result = 31 * result + token.hashCode();
         return result;
     }
 }
