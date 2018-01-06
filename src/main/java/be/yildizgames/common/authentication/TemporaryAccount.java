@@ -33,10 +33,13 @@ public class TemporaryAccount {
 
     private final String email;
 
-    private TemporaryAccount(String login, String password, String email) {
+    private final String language;
+
+    private TemporaryAccount(String login, String password, String email, String language) {
         this.login = login;
         this.password = password;
         this.email = email;
+        this.language = language;
     }
 
     /**
@@ -47,9 +50,9 @@ public class TemporaryAccount {
      * @param email Email, cannot be null, and must match the email regular expression.
      * @return The created TemporaryAccount if the validation passes.
      */
-    public static TemporaryAccount create(final String login, final String password, final String email) {
+    public static TemporaryAccount create(final String login, final String password, final String email, String language) {
         validate(login, password, email);
-        return new TemporaryAccount(login, password, email);
+        return new TemporaryAccount(login, password, email, language);
     }
 
     private static void validate(String login, String password, String email) {
@@ -66,16 +69,20 @@ public class TemporaryAccount {
         }
     }
 
-    public String getLogin() {
-        return login;
+    public final String getLogin() {
+        return this.login;
     }
 
-    public String getPassword() {
-        return password;
+    public final String getPassword() {
+        return this.password;
     }
 
-    public String getEmail() {
-        return email;
+    public final String getEmail() {
+        return this.email;
+    }
+
+    public final String getLanguage() {
+        return this.language;
     }
 
     @Override
