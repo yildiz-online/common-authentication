@@ -31,8 +31,10 @@ class TemporaryAccountTest {
 
     private static final String EMAIL_OK = "me@me.com";
 
+    private static final String LANGUAGE_OK = "en";
+
     private static TemporaryAccount givenATempAccount() {
-        return TemporaryAccount.create(LOGIN_OK, PASSWORD_OK, EMAIL_OK);
+        return TemporaryAccount.create(LOGIN_OK, PASSWORD_OK, EMAIL_OK, LANGUAGE_OK);
     }
 
     @Nested
@@ -48,17 +50,17 @@ class TemporaryAccountTest {
 
         @Test
         void withLoginNull() {
-            assertThrows(TemporaryAccountValidationException.class, () -> TemporaryAccount.create(null, PASSWORD_OK, EMAIL_OK));
+            assertThrows(TemporaryAccountValidationException.class, () -> TemporaryAccount.create(null, PASSWORD_OK, EMAIL_OK, LANGUAGE_OK));
         }
 
         @Test
         void withPasswordNull() {
-            assertThrows(TemporaryAccountValidationException.class, () -> TemporaryAccount.create(LOGIN_OK, null, EMAIL_OK));
+            assertThrows(TemporaryAccountValidationException.class, () -> TemporaryAccount.create(LOGIN_OK, null, EMAIL_OK, LANGUAGE_OK));
         }
 
         @Test
         void withEmailNull() {
-            assertThrows(TemporaryAccountValidationException.class, () -> TemporaryAccount.create(LOGIN_OK, PASSWORD_OK, null));
+            assertThrows(TemporaryAccountValidationException.class, () -> TemporaryAccount.create(LOGIN_OK, PASSWORD_OK, null, LANGUAGE_OK));
         }
     }
 
