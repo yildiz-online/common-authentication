@@ -22,41 +22,12 @@
  *
  */
 
-package be.yildizgames.common.authentication;
+module be.yildizgames.common.authentication {
+    requires be.yildizgames.common.mapping;
+    requires be.yildizgames.common.model;
 
-import be.yildizgames.common.authentication.AuthenticationChecker.AuthenticationError;
+    requires jBCrypt;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-/**
- * Exception thrown if a login or a password does not match some criteria(min or
- * max size, no invalid characters...).
- * Immutable class.
- *
- * @author Grégory Van den Borre
- */
-public final class CredentialException extends Exception {
-
-    /***/
-    private static final long serialVersionUID = 2998747641247283686L;
-
-    /**
-     * List of errors, immutable.
-     */
-    private final List<AuthenticationError> errors;
-
-    /**
-     * Create a new credential exception.
-     * @param errors Errors to put in the exception, the list is copied and set immutable.
-     * @throws NullPointerException if errors is null.
-     */
-    public CredentialException(List<AuthenticationError> errors) {
-        this.errors = Collections.unmodifiableList(new ArrayList<>(errors));
-    }
-
-    public List<AuthenticationError> getErrors() {
-        return errors;
-    }
+    exports be.yildizgames.common.authentication;
+    exports be.yildizgames.common.authentication.protocol;
 }

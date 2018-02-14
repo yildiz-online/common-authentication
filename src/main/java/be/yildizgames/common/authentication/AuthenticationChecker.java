@@ -24,8 +24,7 @@
 
 package be.yildizgames.common.authentication;
 
-import be.yildizgames.common.collection.Lists;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -62,7 +61,7 @@ public final class AuthenticationChecker {
      * @throws CredentialException If the check fails.
      */
     public Credentials check(final String login, final String password) throws CredentialException {
-        List<AuthenticationError> errors = Lists.newList();
+        List<AuthenticationError> errors = new ArrayList<>();
         boolean loginValid = this.checkLogin(login, errors);
         boolean pwdValid = this.checkPassword(password, errors);
         if (loginValid && pwdValid) {
