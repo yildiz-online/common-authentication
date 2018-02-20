@@ -24,9 +24,9 @@
 
 package be.yildizgames.common.authentication;
 
-import be.yildizgames.common.collection.Lists;
 import be.yildizgames.common.exception.business.BusinessException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,7 +37,7 @@ public class TemporaryAccountValidationException extends BusinessException {
 
     private final List<String> errors;
 
-    private final List<AuthenticationChecker.AuthenticationError> exceptions = Lists.newList();
+    private final List<AuthenticationChecker.AuthenticationError> exceptions = new ArrayList<>();
 
     public TemporaryAccountValidationException(final CredentialException ex) {
         super(ex);
@@ -50,7 +50,7 @@ public class TemporaryAccountValidationException extends BusinessException {
 
     public TemporaryAccountValidationException(final String error) {
         super(error);
-        this.errors = Lists.newList(error);
+        this.errors = List.of(error);
     }
 
     public List<String> getErrors() {

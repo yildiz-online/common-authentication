@@ -28,8 +28,8 @@ import be.yildizgames.common.authentication.protocol.TokenVerification;
 import be.yildizgames.common.mapping.BooleanMapper;
 import be.yildizgames.common.mapping.MappingException;
 import be.yildizgames.common.mapping.ObjectMapper;
-import be.yildizgames.common.mapping.PlayerIdMapper;
 import be.yildizgames.common.mapping.Separator;
+import be.yildizgames.common.mapping.model.PlayerIdMapper;
 
 /**
  * @author Grégory Van den Borre
