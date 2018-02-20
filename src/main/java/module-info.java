@@ -32,4 +32,5 @@ module be.yildizgames.common.authentication {
 
     exports be.yildizgames.common.authentication;
     exports be.yildizgames.common.authentication.protocol;
+    exports be.yildizgames.common.authentication.protocol.mapper;
 }
