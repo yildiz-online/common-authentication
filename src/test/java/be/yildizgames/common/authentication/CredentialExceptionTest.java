@@ -24,15 +24,13 @@
 
 package be.yildizgames.common.authentication;
 
-import be.yildizgames.common.collection.Lists;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Grégory Van den Borre
@@ -44,7 +42,7 @@ class CredentialExceptionTest {
 
         @Test
         void happyFlow() {
-            new CredentialException(Lists.newList());
+            new CredentialException(new ArrayList<>());
         }
 
         @Test
@@ -58,7 +56,7 @@ class CredentialExceptionTest {
 
         @Test
         void happyFlow() {
-            CredentialException ce = new CredentialException(Lists.newList(
+            CredentialException ce = new CredentialException(List.of(
                     AuthenticationChecker.AuthenticationError.INVALID_LOGIN_CHAR,
                     AuthenticationChecker.AuthenticationError.INVALID_PASS_CHAR));
             assertEquals(2, ce.getErrors().size());
@@ -68,7 +66,7 @@ class CredentialExceptionTest {
 
         @Test
         void ensureImmutable() {
-            CredentialException ce = new CredentialException(Lists.newList(
+            CredentialException ce = new CredentialException(List.of(
                     AuthenticationChecker.AuthenticationError.INVALID_LOGIN_CHAR,
                     AuthenticationChecker.AuthenticationError.INVALID_PASS_CHAR));
             assertThrows(UnsupportedOperationException.class, () -> ce.getErrors().remove(AuthenticationChecker.AuthenticationError.INVALID_LOGIN_CHAR));
@@ -76,9 +74,9 @@ class CredentialExceptionTest {
 
         @Test
         void ensureCopy() {
-            List<AuthenticationChecker.AuthenticationError> l = Lists.newList(
-                    AuthenticationChecker.AuthenticationError.INVALID_LOGIN_CHAR,
-                    AuthenticationChecker.AuthenticationError.INVALID_PASS_CHAR);
+            List<AuthenticationChecker.AuthenticationError> l = new ArrayList<>();
+            l.add(AuthenticationChecker.AuthenticationError.INVALID_LOGIN_CHAR);
+            l.add(AuthenticationChecker.AuthenticationError.INVALID_PASS_CHAR);
             CredentialException ce = new CredentialException(l);
             assertEquals(2, l.size());
             assertEquals(2, ce.getErrors().size());
