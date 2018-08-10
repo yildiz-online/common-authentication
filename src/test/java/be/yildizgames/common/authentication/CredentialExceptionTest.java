@@ -57,31 +57,31 @@ class CredentialExceptionTest {
         @Test
         void happyFlow() {
             CredentialException ce = new CredentialException(List.of(
-                    AuthenticationChecker.AuthenticationError.INVALID_LOGIN_CHAR,
-                    AuthenticationChecker.AuthenticationError.INVALID_PASS_CHAR));
+                    AuthenticationError.INVALID_LOGIN_CHAR,
+                    AuthenticationError.INVALID_PASS_CHAR));
             assertEquals(2, ce.getErrors().size());
-            assertTrue(ce.getErrors().contains(AuthenticationChecker.AuthenticationError.INVALID_LOGIN_CHAR));
-            assertTrue(ce.getErrors().contains(AuthenticationChecker.AuthenticationError.INVALID_PASS_CHAR));
+            assertTrue(ce.getErrors().contains(AuthenticationError.INVALID_LOGIN_CHAR));
+            assertTrue(ce.getErrors().contains(AuthenticationError.INVALID_PASS_CHAR));
         }
 
         @Test
         void ensureImmutable() {
             CredentialException ce = new CredentialException(List.of(
-                    AuthenticationChecker.AuthenticationError.INVALID_LOGIN_CHAR,
-                    AuthenticationChecker.AuthenticationError.INVALID_PASS_CHAR));
-            assertThrows(UnsupportedOperationException.class, () -> ce.getErrors().remove(AuthenticationChecker.AuthenticationError.INVALID_LOGIN_CHAR));
+                    AuthenticationError.INVALID_LOGIN_CHAR,
+                    AuthenticationError.INVALID_PASS_CHAR));
+            assertThrows(UnsupportedOperationException.class, () -> ce.getErrors().remove(AuthenticationError.INVALID_LOGIN_CHAR));
         }
 
         @Test
         void ensureCopy() {
-            List<AuthenticationChecker.AuthenticationError> l = new ArrayList<>();
-            l.add(AuthenticationChecker.AuthenticationError.INVALID_LOGIN_CHAR);
-            l.add(AuthenticationChecker.AuthenticationError.INVALID_PASS_CHAR);
+            List<AuthenticationError> l = new ArrayList<>();
+            l.add(AuthenticationError.INVALID_LOGIN_CHAR);
+            l.add(AuthenticationError.INVALID_PASS_CHAR);
             CredentialException ce = new CredentialException(l);
             assertEquals(2, l.size());
             assertEquals(2, ce.getErrors().size());
 
-            l.add(AuthenticationChecker.AuthenticationError.LOGIN_TOO_LONG);
+            l.add(AuthenticationError.LOGIN_TOO_LONG);
             assertEquals(3, l.size());
             assertEquals(2, ce.getErrors().size());
         }

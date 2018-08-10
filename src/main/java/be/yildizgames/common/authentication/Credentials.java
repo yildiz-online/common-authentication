@@ -25,7 +25,7 @@
 package be.yildizgames.common.authentication;
 
 /**
- * Store a login and a password. Use the {@link AuthenticationChecker} to create
+ * Store a login and a password. Use the {@link SimpleAuthenticationChecker} to create
  * an instance of this class.
  * Immutable class.
  *

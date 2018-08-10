@@ -22,36 +22,69 @@
  *
  */
 
+
 package be.yildizgames.common.authentication;
 
 /**
+ * Type or errors for credential values.
+ *
  * @author Grégory Van den Borre
  */
-class AuthenticationTestHelper {
+public enum AuthenticationError {
 
-    static final String LOGIN_OK = "testOk";
+    /**
+     * The login contains invalids characters.
+     */
+    INVALID_LOGIN_CHAR("connect.login.invalid"),
 
-    static final String LOGIN_EMPTY = "";
+    /**
+     * The password contains invalid characters.
+     */
+    INVALID_PASS_CHAR("connect.pwd.invalid"),
 
-    static final String LOGIN_TOO_SHORT = "a";
+    /**
+     * The login contains too many characters.
+     */
+    LOGIN_TOO_LONG("connect.login_long"),
 
-    static final String LOGIN_TOO_LONG = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+    /**
+     * The login does not contain enough characters.
+     */
+    LOGIN_TOO_SHORT("connect.login_short"),
 
-    static final String LOGIN_INVALID = "&&&&&&&&";
+    /**
+     * The login is null or has 0 character.
+     */
+    LOGIN_EMPTY("connect.login_empty"),
 
-    static final String PASSWORD_OK = "testOk";
+    /**
+     * The password contains too many characters.
+     */
+    PASS_TOO_LONG("connect.pwd_long"),
 
-    static final String PASSWORD_TOO_LONG = "abcdeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+    /**
+     * The password is null or has 0 character.
+     */
+    PASS_EMPTY("connect.pwd_empty"),
 
-    static final String PASSWORD_EMPTY = "";
+    /**
+     * The password does not contain enough characters.
+     */
+    PASS_TOO_SHORT("connect.pwd_short");
 
-    static final String PASSWORD_TOO_SHORT = "a";
+    /**
+     * Key associated to the error message.
+     */
+    public final String messageKey;
 
-    static final String PASSWORD_INVALID = "&&&&&";
-
-    static final String BLOWFISH_ENCODED = "4c44c99c6edf7120bbf1c9f1dffb7f89";
-
-    static AuthenticationChecker givenADefaultAuthenticationChecker() {
-        return new SimpleAuthenticationChecker(AuthenticationRules.DEFAULT);
+    /**
+     * Initialize the enum value.
+     *
+     * @param messageKey Translation key associated to the error message.
+     */
+    //@Requires messageKey != null.
+    AuthenticationError(final String messageKey) {
+        this.messageKey = messageKey;
     }
+
 }

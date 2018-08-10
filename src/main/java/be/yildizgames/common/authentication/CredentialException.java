@@ -24,8 +24,6 @@
 
 package be.yildizgames.common.authentication;
 
-import be.yildizgames.common.authentication.AuthenticationChecker.AuthenticationError;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

@@ -37,7 +37,7 @@ public class TemporaryAccountValidationException extends BusinessException {
 
     private final List<String> errors;
 
-    private final List<AuthenticationChecker.AuthenticationError> exceptions = new ArrayList<>();
+    private final List<AuthenticationError> exceptions = new ArrayList<>();
 
     public TemporaryAccountValidationException(final CredentialException ex) {
         super(ex);
@@ -57,7 +57,7 @@ public class TemporaryAccountValidationException extends BusinessException {
         return errors;
     }
 
-    public List<AuthenticationChecker.AuthenticationError> getExceptions() {
+    public List<AuthenticationError> getExceptions() {
         return exceptions;
     }
 }

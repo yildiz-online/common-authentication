@@ -27,31 +27,9 @@ package be.yildizgames.common.authentication;
 /**
  * @author Grégory Van den Borre
  */
-class AuthenticationTestHelper {
-
-    static final String LOGIN_OK = "testOk";
-
-    static final String LOGIN_EMPTY = "";
-
-    static final String LOGIN_TOO_SHORT = "a";
-
-    static final String LOGIN_TOO_LONG = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-
-    static final String LOGIN_INVALID = "&&&&&&&&";
-
-    static final String PASSWORD_OK = "testOk";
-
-    static final String PASSWORD_TOO_LONG = "abcdeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-
-    static final String PASSWORD_EMPTY = "";
-
-    static final String PASSWORD_TOO_SHORT = "a";
-
-    static final String PASSWORD_INVALID = "&&&&&";
-
-    static final String BLOWFISH_ENCODED = "4c44c99c6edf7120bbf1c9f1dffb7f89";
-
-    static AuthenticationChecker givenADefaultAuthenticationChecker() {
-        return new SimpleAuthenticationChecker(AuthenticationRules.DEFAULT);
+public class NoAuthenticationChecker implements AuthenticationChecker {
+    @Override
+    public Credentials check(String login, String password) {
+        return new Credentials(login, password);
     }
 }
