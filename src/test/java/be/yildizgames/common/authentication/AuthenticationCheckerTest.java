@@ -27,10 +27,12 @@ package be.yildizgames.common.authentication;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import static be.yildizgames.common.authentication.AuthenticationTestHelper.LOGIN_EMPTY;
 import static be.yildizgames.common.authentication.AuthenticationTestHelper.LOGIN_INVALID;
 import static be.yildizgames.common.authentication.AuthenticationTestHelper.LOGIN_OK;
 import static be.yildizgames.common.authentication.AuthenticationTestHelper.LOGIN_TOO_LONG;
 import static be.yildizgames.common.authentication.AuthenticationTestHelper.LOGIN_TOO_SHORT;
+import static be.yildizgames.common.authentication.AuthenticationTestHelper.PASSWORD_EMPTY;
 import static be.yildizgames.common.authentication.AuthenticationTestHelper.PASSWORD_INVALID;
 import static be.yildizgames.common.authentication.AuthenticationTestHelper.PASSWORD_OK;
 import static be.yildizgames.common.authentication.AuthenticationTestHelper.PASSWORD_TOO_LONG;
@@ -71,15 +73,23 @@ final class AuthenticationCheckerTest {
         @Test
         void stringNull() throws CredentialException {
             AuthenticationChecker c = givenADefaultAuthenticationChecker();
-            assertEquals(AuthenticationChecker.AuthenticationError.LOGIN_TOO_SHORT,
+            assertEquals(AuthenticationChecker.AuthenticationError.LOGIN_EMPTY,
                     assertThrows(CredentialException.class, () -> c.check(null, PASSWORD_OK)).getErrors().get(0));
         }
 
         @Test
         void passwordNull() throws CredentialException {
             AuthenticationChecker c = givenADefaultAuthenticationChecker();
-            assertEquals(AuthenticationChecker.AuthenticationError.PASS_TOO_SHORT,
+            assertEquals(AuthenticationChecker.AuthenticationError.PASS_EMPTY,
                         assertThrows(CredentialException.class, () -> c.check(LOGIN_OK, null)).getErrors().get(0));
+        }
+
+        @Test
+        void loginEmpty() {
+            AuthenticationChecker c = givenADefaultAuthenticationChecker();
+            assertEquals(AuthenticationChecker.AuthenticationError.LOGIN_EMPTY,
+                    assertThrows(CredentialException.class, () -> c.check(LOGIN_EMPTY, PASSWORD_OK)).getErrors().get(0));
+
         }
 
         @Test
@@ -103,6 +113,14 @@ final class AuthenticationCheckerTest {
             assertEquals(AuthenticationChecker.AuthenticationError.PASS_TOO_LONG,
                     assertThrows(CredentialException.class, () -> c.check(LOGIN_OK, PASSWORD_TOO_LONG)).getErrors().get(0));
         }
+
+        @Test
+        void passwordEmpty() throws CredentialException {
+            AuthenticationChecker c = givenADefaultAuthenticationChecker();
+            assertEquals(AuthenticationChecker.AuthenticationError.PASS_EMPTY,
+                    assertThrows(CredentialException.class, () -> c.check(LOGIN_OK, PASSWORD_EMPTY)).getErrors().get(0));
+        }
+
 
         @Test
         void passwordTooShort() throws CredentialException {

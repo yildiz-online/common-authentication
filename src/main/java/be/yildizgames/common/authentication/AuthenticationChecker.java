@@ -81,7 +81,10 @@ public final class AuthenticationChecker {
     private boolean checkLogin(final String login, final List<AuthenticationError> errors) {
         assert errors != null;
         boolean noError = true;
-        if (login == null || login.length() < this.parameters.loginMinLength) {
+        if (login == null || login.isEmpty()) {
+            errors.add(AuthenticationError.LOGIN_EMPTY);
+            noError = false;
+        } else if (login.length() < this.parameters.loginMinLength) {
             errors.add(AuthenticationError.LOGIN_TOO_SHORT);
             noError = false;
         } else if (login.length() > this.parameters.passMaxLength) {
@@ -105,7 +108,10 @@ public final class AuthenticationChecker {
     private boolean checkPassword(final String password, final List<AuthenticationError> errors) {
         assert errors != null;
         boolean noError = true;
-        if (password == null || password.length() < this.parameters.passMinLength) {
+        if(password == null || password.isEmpty()) {
+            errors.add(AuthenticationError.PASS_EMPTY);
+            noError = false;
+        } else if (password.length() < this.parameters.passMinLength) {
             errors.add(AuthenticationError.PASS_TOO_SHORT);
             noError = false;
         } else if (password.length() > this.parameters.passMaxLength) {
@@ -146,9 +152,19 @@ public final class AuthenticationChecker {
         LOGIN_TOO_SHORT("connect.login_short"),
 
         /**
+         * The login is null or has 0 character.
+         */
+        LOGIN_EMPTY("connect.login_empty"),
+
+        /**
          * The password contains too many characters.
          */
         PASS_TOO_LONG("connect.pwd_long"),
+
+        /**
+         * The password is null or has 0 character.
+         */
+        PASS_EMPTY("connect.pwd_empty"),
 
         /**
          * The password does not contain enough characters.

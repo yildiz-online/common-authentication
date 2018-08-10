@@ -31,7 +31,9 @@ class AuthenticationTestHelper {
 
     static final String LOGIN_OK = "testOk";
 
-    static final String LOGIN_TOO_SHORT = "";
+    static final String LOGIN_EMPTY = "";
+
+    static final String LOGIN_TOO_SHORT = "a";
 
     static final String LOGIN_TOO_LONG = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 
@@ -40,6 +42,8 @@ class AuthenticationTestHelper {
     static final String PASSWORD_OK = "testOk";
 
     static final String PASSWORD_TOO_LONG = "abcdeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+
+    static final String PASSWORD_EMPTY = "";
 
     static final String PASSWORD_TOO_SHORT = "a";
 
