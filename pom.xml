@@ -30,7 +30,7 @@
   <url>https://bitbucket.org/yildiz-engine-team/common-authentication</url>
 
   <artifactId>common-authentication</artifactId>
-  <version>1.1.1</version>
+  <version>1.1.2</version>
 
   <packaging>jar</packaging>
   <inceptionYear>2017</inceptionYear>
@@ -53,7 +53,7 @@
     <dependency>
       <groupId>be.yildiz-games</groupId>
       <artifactId>common-mapping-model</artifactId>
-      <version>1.0.1</version>
+      <version>1.0.2</version>
     </dependency>
     <dependency>
       <groupId>de.svenkubiak</groupId>
