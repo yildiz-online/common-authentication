@@ -25,7 +25,7 @@
 package be.yildizgames.common.authentication.protocol.mapper;
 
 import be.yildizgames.common.authentication.protocol.AccountConfirmationDto;
-import be.yildizgames.common.mapping.MappingException;
+import be.yildizgames.common.authentication.protocol.mapper.exception.AuthenticationMappingException;
 import be.yildizgames.common.mapping.ObjectMapper;
 import be.yildizgames.common.mapping.Separator;
 
@@ -45,13 +45,13 @@ public class AccountConfirmationMapper implements ObjectMapper<AccountConfirmati
     }
 
     @Override
-    public AccountConfirmationDto from(String s) throws MappingException {
+    public AccountConfirmationDto from(String s) {
         assert s != null;
         try {
             String[] v = s.split(Separator.OBJECTS_SEPARATOR);
             return new AccountConfirmationDto(v[0], v[1]);
         } catch (IndexOutOfBoundsException e) {
-            throw new MappingException(e);
+            throw new AuthenticationMappingException(e);
         }
     }
 

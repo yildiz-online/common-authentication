@@ -26,7 +26,6 @@ package be.yildizgames.common.authentication.protocol.mapper;
 
 import be.yildizgames.common.authentication.Token;
 import be.yildizgames.common.mapping.IntegerMapper;
-import be.yildizgames.common.mapping.MappingException;
 import be.yildizgames.common.mapping.ObjectMapper;
 
 /**
@@ -45,7 +44,7 @@ public class TokenStatusMapper implements ObjectMapper<Token.Status> {
     }
 
     @Override
-    public Token.Status from(String s) throws MappingException {
+    public Token.Status from(String s) {
         int i = IntegerMapper.getInstance().from(s);
         return Token.Status.valueOf(i);
     }

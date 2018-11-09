@@ -25,8 +25,8 @@
 package be.yildizgames.common.authentication.protocol.mapper;
 
 import be.yildizgames.common.authentication.protocol.TemporaryAccountCreationResultDto;
+import be.yildizgames.common.authentication.protocol.mapper.exception.AuthenticationMappingException;
 import be.yildizgames.common.mapping.BooleanMapper;
-import be.yildizgames.common.mapping.MappingException;
 import be.yildizgames.common.mapping.ObjectMapper;
 import be.yildizgames.common.mapping.Separator;
 
@@ -46,7 +46,7 @@ public class TemporaryAccountResultMapper implements ObjectMapper<TemporaryAccou
     }
 
     @Override
-    public TemporaryAccountCreationResultDto from(String s) throws MappingException {
+    public TemporaryAccountCreationResultDto from(String s) {
         assert s != null;
         TemporaryAccountCreationResultDto dto = new TemporaryAccountCreationResultDto();
         try {
@@ -60,7 +60,7 @@ public class TemporaryAccountResultMapper implements ObjectMapper<TemporaryAccou
             dto.setTechnicalIssue(BooleanMapper.getInstance().from(v[6]));
             return dto;
         } catch (IndexOutOfBoundsException e) {
-            throw new MappingException(e);
+            throw new AuthenticationMappingException(e);
         }
     }
 

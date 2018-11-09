@@ -25,7 +25,7 @@
 package be.yildizgames.common.authentication.protocol.mapper;
 
 import be.yildizgames.common.authentication.Credentials;
-import be.yildizgames.common.mapping.MappingException;
+import be.yildizgames.common.authentication.protocol.mapper.exception.AuthenticationMappingException;
 import be.yildizgames.common.mapping.ObjectMapper;
 import be.yildizgames.common.mapping.Separator;
 
@@ -45,13 +45,13 @@ public class CredentialsMapper implements ObjectMapper<Credentials> {
     }
 
     @Override
-    public Credentials from(String s) throws MappingException {
+    public Credentials from(String s) {
         assert s != null;
         try {
             String[] v = s.split(Separator.VAR_SEPARATOR);
             return Credentials.unchecked(v[0], v[1]);
         } catch (IndexOutOfBoundsException e) {
-            throw new MappingException(e);
+            throw new AuthenticationMappingException(e);
         }
     }
 

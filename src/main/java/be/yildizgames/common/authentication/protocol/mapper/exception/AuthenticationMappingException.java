@@ -21,16 +21,17 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  *
  */
+package be.yildizgames.common.authentication.protocol.mapper.exception;
 
-module be.yildizgames.common.authentication {
-    requires be.yildizgames.common.mapping;
-    requires be.yildizgames.common.model;
-    requires be.yildizgames.common.mapping.model;
-    requires be.yildizgames.common.exception;
+import be.yildizgames.common.exception.technical.TechnicalException;
 
-    requires jBCrypt;
+public class AuthenticationMappingException extends TechnicalException {
 
-    exports be.yildizgames.common.authentication;
-    exports be.yildizgames.common.authentication.protocol;
-    exports be.yildizgames.common.authentication.protocol.mapper;
+    public AuthenticationMappingException(String message, Exception cause) {
+        super(message, cause);
+    }
+
+    public AuthenticationMappingException(Exception cause) {
+        super(cause);
+    }
 }

@@ -25,8 +25,8 @@
 package be.yildizgames.common.authentication.protocol.mapper;
 
 import be.yildizgames.common.authentication.protocol.TokenVerification;
+import be.yildizgames.common.authentication.protocol.mapper.exception.AuthenticationMappingException;
 import be.yildizgames.common.mapping.BooleanMapper;
-import be.yildizgames.common.mapping.MappingException;
 import be.yildizgames.common.mapping.ObjectMapper;
 import be.yildizgames.common.mapping.Separator;
 import be.yildizgames.common.mapping.model.PlayerIdMapper;
@@ -48,13 +48,13 @@ public class TokenVerificationMapper implements ObjectMapper<TokenVerification> 
 
 
     @Override
-    public TokenVerification from(String s) throws MappingException {
+    public TokenVerification from(String s) {
         assert s != null;
         try {
             String[] v = s.split(Separator.VAR_SEPARATOR);
             return new TokenVerification(PlayerIdMapper.getInstance().from(v[0]), BooleanMapper.getInstance().from(v[1]));
         } catch (IndexOutOfBoundsException e) {
-            throw new MappingException(e);
+            throw new AuthenticationMappingException(e);
         }
     }
 

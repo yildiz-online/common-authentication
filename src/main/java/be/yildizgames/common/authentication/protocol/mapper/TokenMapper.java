@@ -25,8 +25,8 @@
 package be.yildizgames.common.authentication.protocol.mapper;
 
 import be.yildizgames.common.authentication.Token;
+import be.yildizgames.common.authentication.protocol.mapper.exception.AuthenticationMappingException;
 import be.yildizgames.common.mapping.IntegerMapper;
-import be.yildizgames.common.mapping.MappingException;
 import be.yildizgames.common.mapping.ObjectMapper;
 import be.yildizgames.common.mapping.Separator;
 import be.yildizgames.common.mapping.model.PlayerIdMapper;
@@ -47,14 +47,14 @@ public class TokenMapper implements ObjectMapper<Token> {
     }
 
     @Override
-    public Token from(String s) throws MappingException {
+    public Token from(String s) {
         try {
             String[] v = s.split(Separator.VAR_SEPARATOR);
             return Token.any(PlayerIdMapper.getInstance().from(v[0]),
                     IntegerMapper.getInstance().from(v[1]),
                     TokenStatusMapper.getInstance().from(v[2]));
         } catch (IndexOutOfBoundsException e) {
-            throw new MappingException(e);
+            throw new AuthenticationMappingException(e);
         }
     }
 
