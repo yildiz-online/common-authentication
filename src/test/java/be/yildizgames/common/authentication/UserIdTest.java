@@ -55,7 +55,60 @@ class UserIdTest {
             UserId id = new UserId(-5);
             Assertions.assertEquals(-5, id.value);
         }
+    }
 
+    @Nested
+    class HashCode {
+
+        @Test
+        void same() {
+            UserId id = new UserId(5);
+            UserId id2 = new UserId(5);
+            Assertions.assertEquals(id.hashCode(), id2.hashCode());
+        }
+
+        @Test
+        void notSame() {
+            UserId id = new UserId(5);
+            UserId id2 = new UserId(6);
+            Assertions.assertNotEquals(id.hashCode(), id2.hashCode());
+        }
+    }
+
+    @Nested
+    class Equals {
+
+        @Test
+        void equal() {
+            UserId id = new UserId(5);
+            UserId id2 = new UserId(5);
+            Assertions.assertEquals(id, id2);
+        }
+
+        @Test
+        void notEqual() {
+            UserId id = new UserId(5);
+            UserId id2 = new UserId(6);
+            Assertions.assertNotEquals(id, id2);
+        }
+
+        @Test
+        void sameInstance() {
+            UserId id = new UserId(5);
+            Assertions.assertEquals(id, id);
+        }
+
+        @Test
+        void nullValue() {
+            UserId id = new UserId(5);
+            Assertions.assertNotEquals(id, null);
+        }
+
+        @Test
+        void differentType() {
+            UserId id = new UserId(5);
+            Assertions.assertNotEquals(id, 5);
+        }
     }
 
 }
