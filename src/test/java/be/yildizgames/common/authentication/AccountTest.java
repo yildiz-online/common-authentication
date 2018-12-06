@@ -24,6 +24,11 @@
 
 package be.yildizgames.common.authentication;
 
+import be.yildizgames.common.exception.implementation.ImplementationException;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+
 /**
  * @author Grégory Van den Borre
  */
@@ -31,6 +36,41 @@ public class AccountTest {
 
     public static Account givenAnAccount() {
         return new Account("01", "me", "myPass", "me@me.com", 100);
+    }
+
+    @Nested
+    class Constructor {
+
+        @Test
+        void happyFlow() {
+            Account account = new Account("01", "myLogin", "myPassword", "myEmail", 10);
+            Assertions.assertEquals("01", account.getId());
+            Assertions.assertEquals("myLogin", account.getLogin());
+            Assertions.assertEquals("myPassword", account.getPassword());
+            Assertions.assertEquals("myEmail", account.getEmail());
+            Assertions.assertEquals(10, account.getLastConnectionDate());
+        }
+
+        @Test
+        void nullId() {
+            Assertions.assertThrows(ImplementationException.class, () -> new Account(null,"myLogin", "myPassword", "myEmail", 10));
+        }
+
+        @Test
+        void nullLogin() {
+            Assertions.assertThrows(ImplementationException.class, () -> new Account("01",null, "myPassword", "myEmail", 10));
+        }
+
+        @Test
+        void nullPassword() {
+            Assertions.assertThrows(ImplementationException.class, () -> new Account("01","myLogin", null, "myEmail", 10));
+        }
+
+        @Test
+        void nullEmail() {
+            Assertions.assertThrows(ImplementationException.class, () -> new Account("01","myLogin", "myPassword", null, 10));
+        }
+
     }
 
 }

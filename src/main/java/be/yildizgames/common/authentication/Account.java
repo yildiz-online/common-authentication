@@ -24,6 +24,8 @@
 
 package be.yildizgames.common.authentication;
 
+import be.yildizgames.common.exception.implementation.ImplementationException;
+
 /**
  * @author Grégory Van den Borre
  */
@@ -40,6 +42,11 @@ public class Account {
     private final long lastConnectionDate;
 
     public Account(String id, String login, String password, String email, long lastConnectionDate) {
+        super();
+        ImplementationException.throwForNull(id);
+        ImplementationException.throwForNull(login);
+        ImplementationException.throwForNull(password);
+        ImplementationException.throwForNull(email);
         this.id = id;
         this.login = login;
         this.password = password;
