@@ -24,6 +24,8 @@
 
 package be.yildizgames.common.authentication;
 
+import be.yildizgames.common.exception.implementation.ImplementationException;
+
 /**
  * Store a login and a password. Use the {@link SimpleAuthenticationChecker} to create
  * an instance of this class.
@@ -44,8 +46,8 @@ public final class Credentials {
     public final String password;
 
     Credentials(String login, String password) {
-        assert login != null;
-        assert password != null;
+        ImplementationException.throwForNull(login);
+        ImplementationException.throwForNull(password);
         this.login = login;
         this.password = password;
     }

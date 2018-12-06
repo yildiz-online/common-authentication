@@ -24,6 +24,7 @@
 
 package be.yildizgames.common.authentication;
 
+import be.yildizgames.common.exception.implementation.ImplementationException;
 import org.junit.jupiter.api.Test;
 
 import java.util.regex.Pattern;
@@ -81,11 +82,11 @@ class AuthenticationRuleTest {
 
     @Test
     void testNullLoginPattern() {
-        assertThrows(AssertionError.class, () -> new AuthenticationRules(10, 15, 3, 5, null, Pattern.compile("[a-z]*")));
+        assertThrows(ImplementationException.class, () -> new AuthenticationRules(10, 15, 3, 5, null, Pattern.compile("[a-z]*")));
     }
 
     @Test
     void testNullPassPattern() {
-        assertThrows(AssertionError.class, () -> new AuthenticationRules(10, 15, 3, 5, Pattern.compile("[a-z]*"), null));
+        assertThrows(ImplementationException.class, () -> new AuthenticationRules(10, 15, 3, 5, Pattern.compile("[a-z]*"), null));
     }
 }

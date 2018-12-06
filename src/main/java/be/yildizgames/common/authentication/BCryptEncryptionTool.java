@@ -24,6 +24,7 @@
 
 package be.yildizgames.common.authentication;
 
+import be.yildizgames.common.exception.implementation.ImplementationException;
 import org.mindrot.jbcrypt.BCrypt;
 
 /**
@@ -35,7 +36,8 @@ public class BCryptEncryptionTool implements EncryptionTool {
     private final String salt;
 
     public BCryptEncryptionTool(String salt) {
-        assert salt != null;
+        super();
+        ImplementationException.throwForNull(salt);
         this.salt = salt;
     }
 
@@ -45,11 +47,14 @@ public class BCryptEncryptionTool implements EncryptionTool {
 
     @Override
     public String encrypt(String toEncrypt) {
+        ImplementationException.throwForNull(toEncrypt);
         return BCrypt.hashpw(toEncrypt, this.salt);
     }
 
     @Override
     public boolean check(String encrypted, String clear) {
+        ImplementationException.throwForNull(encrypted);
+        ImplementationException.throwForNull(clear);
         return BCrypt.checkpw(clear, encrypted);
     }
 }

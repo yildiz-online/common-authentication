@@ -24,6 +24,7 @@
 
 package be.yildizgames.common.authentication;
 
+import be.yildizgames.common.exception.implementation.ImplementationException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -51,12 +52,12 @@ final class CredentialsTest {
 
     @Test
     void testCredentialsLoginNull() {
-        assertThrows(AssertionError.class, () -> new Credentials(null, AuthenticationTestHelper.PASSWORD_OK));
+        assertThrows(ImplementationException.class, () -> new Credentials(null, AuthenticationTestHelper.PASSWORD_OK));
     }
 
     @Test
     void testCredentialsPasswordNull() {
-        assertThrows(AssertionError.class, () -> new Credentials(AuthenticationTestHelper.LOGIN_OK, null));
+        assertThrows(ImplementationException.class, () -> new Credentials(AuthenticationTestHelper.LOGIN_OK, null));
     }
 
     @Test

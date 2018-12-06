@@ -24,6 +24,8 @@
 
 package be.yildizgames.common.authentication;
 
+import be.yildizgames.common.exception.implementation.ImplementationException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -42,6 +44,21 @@ class BCryptEncryptionToolTest {
     private static final String ENCRYPTED = "$2a$10$7.PJwtiY7Y2heDKA7AoVF.tZnqlnekLweOYrV0qf3WOGiQ6nlKEk.";
 
     @Nested
+    class Constructor {
+
+        @Test
+        void happyFlow() {
+            EncryptionTool enc = new BCryptEncryptionTool("azerty");
+            Assertions.assertNotNull(enc);
+        }
+
+        @Test
+        void nullParameter() {
+            Assertions.assertThrows(ImplementationException.class, () -> new BCryptEncryptionTool(null));
+        }
+    }
+
+    @Nested
     class Encrypt {
 
         @Test
@@ -49,6 +66,12 @@ class BCryptEncryptionToolTest {
             EncryptionTool enc = new BCryptEncryptionTool(SALT);
             String result = enc.encrypt(CLEAR);
             assertEquals(ENCRYPTED, result);
+        }
+
+        @Test
+        void nullParameter() {
+            EncryptionTool enc = new BCryptEncryptionTool(SALT);
+            Assertions.assertThrows(ImplementationException.class, () -> enc.encrypt(null));
         }
     }
 
@@ -58,7 +81,19 @@ class BCryptEncryptionToolTest {
         @Test
         void happyFlow() {
             EncryptionTool enc = new BCryptEncryptionTool();
-            assertTrue(enc.check(enc.encrypt("tt"), "tt"));
+            assertTrue(enc.check(enc.encrypt(CLEAR), CLEAR));
+        }
+
+        @Test
+        void nullEncrypted() {
+            EncryptionTool enc = new BCryptEncryptionTool();
+            Assertions.assertThrows(ImplementationException.class, () -> enc.check(null, CLEAR));
+        }
+
+        @Test
+        void nullClear() {
+            EncryptionTool enc = new BCryptEncryptionTool();
+            Assertions.assertThrows(ImplementationException.class, () -> enc.check(ENCRYPTED, null));
         }
     }
 }
