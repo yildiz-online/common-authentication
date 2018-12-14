@@ -27,6 +27,7 @@ package be.yildizgames.common.authentication;
 import java.util.regex.Pattern;
 
 /**
+ * A temporary account is an account that has not yet been validated, once validated, it will be converted into a regular account.
  * @author Grégory Van den Borre
  */
 public class TemporaryAccount {
@@ -37,12 +38,24 @@ public class TemporaryAccount {
 
     private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
 
+    /**
+     * User login.
+     */
     private final String login;
 
+    /**
+     * User password.
+     */
     private final String password;
 
+    /**
+     * User email.
+     */
     private final String email;
 
+    /**
+     * User preferred language.
+     */
     private final String language;
 
     private TemporaryAccount(String login, String password, String email, String language) {
