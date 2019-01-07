@@ -33,7 +33,7 @@ import be.yildizgames.common.exception.implementation.ImplementationException;
  *
  * @author Grégory Van den Borre
  */
-public final class Credentials {
+public class Credentials {
 
     /**
      * User login.
@@ -57,7 +57,7 @@ public final class Credentials {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public final boolean equals(Object o) {
         if (this == o) {
             return true;
         }
@@ -71,7 +71,7 @@ public final class Credentials {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         int result = login.hashCode();
         result = 31 * result + password.hashCode();
         return result;

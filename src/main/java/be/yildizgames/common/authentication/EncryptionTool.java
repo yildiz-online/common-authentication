@@ -30,7 +30,18 @@ package be.yildizgames.common.authentication;
  */
 public interface EncryptionTool {
 
+    /**
+     * Encrypt a value.
+     * @param toEncrypt Value to encrypt.
+     * @return Encrypted value.
+     */
     String encrypt(String toEncrypt);
 
+    /**
+     * Check if an encrypted and a clear value have the same encrypted value.
+     * @param encrypted Encrypted value to be checked against.
+     * @param clear Clear value to check.
+     * @return true if they match, false otherwise.
+     */
     boolean check(String encrypted, String clear);
 }

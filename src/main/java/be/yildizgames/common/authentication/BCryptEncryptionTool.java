@@ -46,13 +46,13 @@ public class BCryptEncryptionTool implements EncryptionTool {
     }
 
     @Override
-    public String encrypt(String toEncrypt) {
+    public final String encrypt(String toEncrypt) {
         ImplementationException.throwForNull(toEncrypt);
         return BCrypt.hashpw(toEncrypt, this.salt);
     }
 
     @Override
-    public boolean check(String encrypted, String clear) {
+    public final boolean check(String encrypted, String clear) {
         ImplementationException.throwForNull(encrypted);
         ImplementationException.throwForNull(clear);
         return BCrypt.checkpw(clear, encrypted);

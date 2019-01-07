@@ -34,7 +34,7 @@ import java.util.regex.Pattern;
  * Immutable class.
  * @author Grégory Van den Borre
  */
-public final class SimpleAuthenticationChecker implements AuthenticationChecker {
+public class SimpleAuthenticationChecker implements AuthenticationChecker {
 
     /**
      * Parameter rules.
@@ -52,7 +52,7 @@ public final class SimpleAuthenticationChecker implements AuthenticationChecker 
     }
 
     @Override
-    public Credentials check(final String login, final String password) throws CredentialException {
+    public final Credentials check(final String login, final String password) throws CredentialException {
         List<AuthenticationError> errors = new ArrayList<>();
         boolean loginValid = this.checkLogin(login, errors);
         boolean pwdValid = this.checkPassword(password, errors);
