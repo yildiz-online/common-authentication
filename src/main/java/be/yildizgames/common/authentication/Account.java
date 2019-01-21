@@ -27,21 +27,37 @@ package be.yildizgames.common.authentication;
 import be.yildizgames.common.exception.implementation.ImplementationException;
 
 /**
+ * Data representation for a user account.
  * @author Grégory Van den Borre
  */
 public class Account {
 
+    /**
+     * User unique id.
+     */
     private final String id;
 
+    /**
+     * User login.
+     */
     private final String login;
 
+    /**
+     * Uuser password.
+     */
     private final String password;
 
+    /**
+     * User email.
+     */
     private final String email;
 
+    /**
+     * User last connection time.
+     */
     private final long lastConnectionDate;
 
-    public Account(String id, String login, String password, String email, long lastConnectionDate) {
+    public Account(final String id, final String login, final String password, final String email, final long lastConnectionDate) {
         super();
         ImplementationException.throwForNull(id);
         ImplementationException.throwForNull(login);
@@ -54,38 +70,58 @@ public class Account {
         this.lastConnectionDate = lastConnectionDate;
     }
 
-    public Account resetPassword() {
+    public final Account resetPassword() {
         //FIXME do
-        return null;
+        return this;
     }
 
-    public Account changePassword(final String newPassword) {
+    public final Account changePassword(final String newPassword) {
         //FIXME do
-        return null;
+        return this;
     }
 
-    public Account changeEmail(String newEmail) {
+    public final Account changeEmail(String newEmail) {
         //FIXME do
-        return null;
+        return this;
     }
 
-    public String getId() {
-        return id;
+    /**
+     * Provide the user id.
+     * @return User id.
+     */
+    public final String getId() {
+        return this.id;
     }
 
-    public String getLogin() {
-        return login;
+    /**
+     * Provide the user login.
+     * @return User login.
+     */
+    public final String getLogin() {
+        return this.login;
     }
 
-    public String getPassword() {
+    /**
+     * Provide the user password.
+     * @return User password.
+     */
+    public final String getPassword() {
         return password;
     }
 
-    public String getEmail() {
+    /**
+     * Provide the user email.
+     * @return User email.
+     */
+    public final String getEmail() {
         return email;
     }
 
-    public long getLastConnectionDate() {
+    /**
+     * Provide the user last connection time.
+     * @return User last connection time.
+     */
+    public final long getLastConnectionDate() {
         return lastConnectionDate;
     }
 }

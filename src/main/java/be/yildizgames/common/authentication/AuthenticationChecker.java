@@ -25,6 +25,7 @@
 package be.yildizgames.common.authentication;
 
 /**
+ * Check the login password against the value expected.
  * @author Grégory Van den Borre
  */
 public interface AuthenticationChecker {

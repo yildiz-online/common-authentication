@@ -33,26 +33,36 @@ import org.mindrot.jbcrypt.BCrypt;
  */
 public class BCryptEncryptionTool implements EncryptionTool {
 
+    /**
+     * Salt.
+     */
     private final String salt;
 
+    /**
+     * Create a new instance using a provided salt.
+     * @param salt Salt to use.
+     */
     public BCryptEncryptionTool(String salt) {
         super();
         ImplementationException.throwForNull(salt);
         this.salt = salt;
     }
 
+    /**
+     * Create a new instance generating a salt.
+     */
     public BCryptEncryptionTool() {
         this(BCrypt.gensalt());
     }
 
     @Override
-    public final String encrypt(String toEncrypt) {
+    public final String encrypt(final String toEncrypt) {
         ImplementationException.throwForNull(toEncrypt);
         return BCrypt.hashpw(toEncrypt, this.salt);
     }
 
     @Override
-    public final boolean check(String encrypted, String clear) {
+    public final boolean check(final String encrypted, final String clear) {
         ImplementationException.throwForNull(encrypted);
         ImplementationException.throwForNull(clear);
         return BCrypt.checkpw(clear, encrypted);

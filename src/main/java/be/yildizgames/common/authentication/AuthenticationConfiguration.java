@@ -30,9 +30,21 @@ package be.yildizgames.common.authentication;
  */
 public interface AuthenticationConfiguration {
 
+    /**
+     * Provide the broker data folder in case of internal broker.
+     * @return The broker data folder.
+     */
     String getBrokerDataFolder();
 
+    /**
+     * Provide the broker host.
+     * @return The broker host.
+     */
     String getBrokerHost();
 
+    /**
+     * Provide the broker port.
+     * @return The broker port.
+     */
     int getBrokerPort();
 }
