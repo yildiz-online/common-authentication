@@ -34,34 +34,34 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * @author Grégory Van den Borre
  */
-final class CredentialsTest {
+public final class CredentialsTest {
     
     @Test
-    void testGetHashedPassword() {
+    public void testGetHashedPassword() {
         Credentials c = new Credentials(AuthenticationTestHelper.LOGIN_OK, AuthenticationTestHelper.PASSWORD_OK);
         assertEquals(AuthenticationTestHelper.PASSWORD_OK, c.password);
     }
 
 
     @Test
-    void testGetLogin() {
+    public void testGetLogin() {
         Credentials c = new Credentials(AuthenticationTestHelper.LOGIN_OK, AuthenticationTestHelper.PASSWORD_OK);
         assertEquals(AuthenticationTestHelper.LOGIN_OK, c.login);
     }
 
 
     @Test
-    void testCredentialsLoginNull() {
+    public void testCredentialsLoginNull() {
         assertThrows(ImplementationException.class, () -> new Credentials(null, AuthenticationTestHelper.PASSWORD_OK));
     }
 
     @Test
-    void testCredentialsPasswordNull() {
+    public void testCredentialsPasswordNull() {
         assertThrows(ImplementationException.class, () -> new Credentials(AuthenticationTestHelper.LOGIN_OK, null));
     }
 
     @Test
-    void testUnchecked() {
+    public void testUnchecked() {
         Credentials c = Credentials.unchecked("abc", "def");
         assertEquals("abc", c.login);
         assertEquals("def", c.password);
@@ -77,14 +77,14 @@ final class CredentialsTest {
     }*/
 
     @Test
-    void testEqualsDifferentLogin() {
+    public void testEqualsDifferentLogin() {
         Credentials base = Credentials.unchecked("abc", "def");
         Credentials diff = Credentials.unchecked("cde", "ghi");
         assertNotEquals(base, diff);
     }
 
     @Test
-    void testEqualsDifferentPassword() {
+    public void testEqualsDifferentPassword() {
         Credentials base = Credentials.unchecked("abc", "def");
         Credentials diff = Credentials.unchecked("abc", "ghi");
         assertNotEquals(base, diff);

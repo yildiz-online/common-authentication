@@ -37,13 +37,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * @author Grégory Van den Borre
  */
-class TokenTest {
+public class TokenTest {
 
     @Nested
-    class Authenticated {
+    public class Authenticated {
 
         @Test
-        void happyFlow() {
+        public void happyFlow() {
             Token t = Token.authenticated(PlayerId.valueOf(6), 12, 10);
             assertEquals(PlayerId.valueOf(6), t.getId());
             assertEquals(12, t.getAuthenticationTime());
@@ -53,21 +53,21 @@ class TokenTest {
         }
 
         @Test
-        void withNullPlayer() {
+        public void withNullPlayer() {
             assertThrows(AssertionError.class, () -> Token.authenticated(null, 0, 10));
         }
 
         @Test
-        void withNegativeTime() {
+        public void withNegativeTime() {
             assertThrows(IllegalArgumentException.class, () -> Token.authenticated(PlayerId.valueOf(6), -1, 10));
         }
     }
 
     @Nested
-    class AuthenticationFailed {
+    public class AuthenticationFailed {
 
         @Test
-        void happyFlow() {
+        public void happyFlow() {
             Token t = Token.authenticationFailed();
             assertEquals(PlayerId.WORLD, t.getId());
             assertEquals(0, t.getAuthenticationTime());
@@ -78,10 +78,10 @@ class TokenTest {
     }
 
     @Nested
-    class Banned {
+    public class Banned {
 
         @Test
-        void happyFlow() {
+        public void happyFlow() {
             Token t = Token.banned();
             assertEquals(PlayerId.WORLD, t.getId());
             assertEquals(0, t.getAuthenticationTime());
@@ -92,10 +92,10 @@ class TokenTest {
     }
 
     @Nested
-    class NotFound {
+    public class NotFound {
 
         @Test
-        void happyFlow() {
+        public void happyFlow() {
             Token t = Token.notFound();
             assertEquals(PlayerId.WORLD, t.getId());
             assertEquals(0, t.getAuthenticationTime());
@@ -106,10 +106,10 @@ class TokenTest {
     }
 
     @Nested
-    class Any {
+    public class Any {
 
         @Test
-        void happyFlow() {
+        public void happyFlow() {
             Token t = Token.any(PlayerId.valueOf(6), 10, Token.Status.NOT_AUTHENTICATED);
             assertEquals(PlayerId.valueOf(6), t.getId());
             assertEquals(0, t.getAuthenticationTime());
@@ -118,22 +118,22 @@ class TokenTest {
         }
 
         @Test
-        void withNullPlayer() {
+        public void withNullPlayer() {
             assertThrows(AssertionError.class, () -> Token.any(null, 10, Token.Status.AUTHENTICATED));
         }
 
         @Test
-        void withNullStatus() {
+        public void withNullStatus() {
             assertThrows(AssertionError.class, () -> Token.any(PlayerId.valueOf(6), 10, null));
         }
 
     }
 
     @Nested
-    class HashCode {
+    public class HashCode {
 
         @Test
-        void isSame() {
+        public void isSame() {
             Token t = Token.authenticated(PlayerId.valueOf(6), 12, 10);
             Token t2 = Token.authenticated(PlayerId.valueOf(6), 12, 10);
             Token t3 = Token.authenticated(PlayerId.valueOf(6), 25, 10);
@@ -142,7 +142,7 @@ class TokenTest {
         }
 
         @Test
-        void isNotSame() {
+        public void isNotSame() {
             Token t = Token.authenticated(PlayerId.valueOf(6), 12, 10);
             Token t2 = Token.authenticated(PlayerId.valueOf(7), 12, 10);
             Token t3 = Token.authenticated(PlayerId.valueOf(6), 12, 12);
@@ -152,56 +152,56 @@ class TokenTest {
     }
 
     @Nested
-    class Equals {
+    public class Equals {
 
         @Test
-        void isSameObject() {
+        public void isSameObject() {
             Token t = Token.authenticated(PlayerId.valueOf(6), 12, 10);
             assertTrue(t.equals(t));
         }
 
         @Test
-        void isSame() {
+        public void isSame() {
             Token t = Token.authenticated(PlayerId.valueOf(6), 12, 10);
             Token t2 = Token.authenticated(PlayerId.valueOf(6), 12, 10);
             assertTrue(t.equals(t2));
         }
 
         @Test
-        void withDifferentPlayer() {
+        public void withDifferentPlayer() {
             Token t = Token.authenticated(PlayerId.valueOf(6), 12, 10);
             Token t2 = Token.authenticated(PlayerId.valueOf(7), 12, 10);
             assertFalse(t.equals(t2));
         }
 
         @Test
-        void withDifferentTime() {
+        public void withDifferentTime() {
             Token t = Token.authenticated(PlayerId.valueOf(6), 12, 10);
             Token t2 = Token.authenticated(PlayerId.valueOf(6), 25, 10);
             assertTrue(t.equals(t2));
         }
 
         @Test
-        void withDifferentKey() {
+        public void withDifferentKey() {
             Token t = Token.authenticated(PlayerId.valueOf(6), 12, 10);
             Token t2 = Token.authenticated(PlayerId.valueOf(6), 12, 11);
             assertFalse(t.equals(t2));
         }
 
         @Test
-        void withNull() {
+        public void withNull() {
             Token t = Token.authenticated(PlayerId.valueOf(6), 12, 10);
             assertFalse(t.equals(null));
         }
 
         @Test
-        void withOtherType() {
+        public void withOtherType() {
             Token t = Token.authenticated(PlayerId.valueOf(6), 12, 10);
             assertFalse(t.equals("ok"));
         }
 
         @Test
-        void withDifferentStatus() {
+        public void withDifferentStatus() {
             Token t = Token.any(PlayerId.valueOf(6), 10, Token.Status.AUTHENTICATED);
             Token t2 = Token.any(PlayerId.valueOf(6), 10, Token.Status.NOT_AUTHENTICATED);
             assertFalse(t.equals(t2));

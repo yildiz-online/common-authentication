@@ -27,7 +27,7 @@ package be.yildizgames.common.authentication;
 /**
  * @author Grégory Van den Borre
  */
-class AuthenticationTestHelper {
+public class AuthenticationTestHelper {
 
     static final String LOGIN_OK = "testOk";
 

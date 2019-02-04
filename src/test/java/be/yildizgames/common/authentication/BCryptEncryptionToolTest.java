@@ -35,7 +35,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * @author Grégory Van den Borre
  */
-class BCryptEncryptionToolTest {
+public class BCryptEncryptionToolTest {
 
     private static final String SALT = "$2a$10$7.PJwtiY7Y2heDKA7AoVF.";
 
@@ -44,54 +44,54 @@ class BCryptEncryptionToolTest {
     private static final String ENCRYPTED = "$2a$10$7.PJwtiY7Y2heDKA7AoVF.tZnqlnekLweOYrV0qf3WOGiQ6nlKEk.";
 
     @Nested
-    class Constructor {
+    public class Constructor {
 
         @Test
-        void happyFlow() {
+        public void happyFlow() {
             EncryptionTool enc = new BCryptEncryptionTool("azerty");
             Assertions.assertNotNull(enc);
         }
 
         @Test
-        void nullParameter() {
+        public void nullParameter() {
             Assertions.assertThrows(ImplementationException.class, () -> new BCryptEncryptionTool(null));
         }
     }
 
     @Nested
-    class Encrypt {
+    public class Encrypt {
 
         @Test
-        void happyFlow() {
+        public void happyFlow() {
             EncryptionTool enc = new BCryptEncryptionTool(SALT);
             String result = enc.encrypt(CLEAR);
             assertEquals(ENCRYPTED, result);
         }
 
         @Test
-        void nullParameter() {
+        public void nullParameter() {
             EncryptionTool enc = new BCryptEncryptionTool(SALT);
             Assertions.assertThrows(ImplementationException.class, () -> enc.encrypt(null));
         }
     }
 
     @Nested
-    class Check {
+    public class Check {
 
         @Test
-        void happyFlow() {
+        public void happyFlow() {
             EncryptionTool enc = new BCryptEncryptionTool();
             assertTrue(enc.check(enc.encrypt(CLEAR), CLEAR));
         }
 
         @Test
-        void nullEncrypted() {
+        public void nullEncrypted() {
             EncryptionTool enc = new BCryptEncryptionTool();
             Assertions.assertThrows(ImplementationException.class, () -> enc.check(null, CLEAR));
         }
 
         @Test
-        void nullClear() {
+        public void nullClear() {
             EncryptionTool enc = new BCryptEncryptionTool();
             Assertions.assertThrows(ImplementationException.class, () -> enc.check(ENCRYPTED, null));
         }

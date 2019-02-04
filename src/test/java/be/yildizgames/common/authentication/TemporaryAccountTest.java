@@ -33,7 +33,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * @author Grégory Van den Borre
  */
-class TemporaryAccountTest {
+public class TemporaryAccountTest {
 
     private static final String LOGIN_OK = "mee";
 
@@ -48,10 +48,10 @@ class TemporaryAccountTest {
     }
 
     @Nested
-    class Constructor {
+    public class Constructor {
 
         @Test
-        void happyFlow() {
+        public void happyFlow() {
             TemporaryAccount ta = givenATempAccount();
             assertEquals(LOGIN_OK, ta.getLogin());
             assertEquals(PASSWORD_OK, ta.getPassword());
@@ -59,17 +59,17 @@ class TemporaryAccountTest {
         }
 
         @Test
-        void withLoginNull() {
+        public void withLoginNull() {
             assertThrows(TemporaryAccountValidationException.class, () -> TemporaryAccount.create(null, PASSWORD_OK, EMAIL_OK, LANGUAGE_OK));
         }
 
         @Test
-        void withPasswordNull() {
+        public void withPasswordNull() {
             assertThrows(TemporaryAccountValidationException.class, () -> TemporaryAccount.create(LOGIN_OK, null, EMAIL_OK, LANGUAGE_OK));
         }
 
         @Test
-        void withEmailNull() {
+        public void withEmailNull() {
             assertThrows(TemporaryAccountValidationException.class, () -> TemporaryAccount.create(LOGIN_OK, PASSWORD_OK, null, LANGUAGE_OK));
         }
     }

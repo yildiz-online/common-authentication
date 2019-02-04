@@ -39,10 +39,10 @@ public class AccountTest {
     }
 
     @Nested
-    class Constructor {
+    public class Constructor {
 
         @Test
-        void happyFlow() {
+        public void happyFlow() {
             Account account = new Account("01", "myLogin", "myPassword", "myEmail", 10);
             Assertions.assertEquals("01", account.getId());
             Assertions.assertEquals("myLogin", account.getLogin());
@@ -52,22 +52,22 @@ public class AccountTest {
         }
 
         @Test
-        void nullId() {
+        public void nullId() {
             Assertions.assertThrows(ImplementationException.class, () -> new Account(null,"myLogin", "myPassword", "myEmail", 10));
         }
 
         @Test
-        void nullLogin() {
+        public void nullLogin() {
             Assertions.assertThrows(ImplementationException.class, () -> new Account("01",null, "myPassword", "myEmail", 10));
         }
 
         @Test
-        void nullPassword() {
+        public void nullPassword() {
             Assertions.assertThrows(ImplementationException.class, () -> new Account("01","myLogin", null, "myEmail", 10));
         }
 
         @Test
-        void nullEmail() {
+        public void nullEmail() {
             Assertions.assertThrows(ImplementationException.class, () -> new Account("01","myLogin", "myPassword", null, 10));
         }
 
