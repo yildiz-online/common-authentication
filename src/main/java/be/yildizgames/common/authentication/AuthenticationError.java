@@ -70,7 +70,11 @@ public enum AuthenticationError {
     /**
      * The password does not contain enough characters.
      */
-    PASS_TOO_SHORT("connect.pwd_short");
+    PASS_TOO_SHORT("connect.pwd_short"),
+
+    MAIL_INVALID("email.invalid"),
+
+    MAIL_EMPTY("email.mandatory");
 
     /**
      * Key associated to the error message.

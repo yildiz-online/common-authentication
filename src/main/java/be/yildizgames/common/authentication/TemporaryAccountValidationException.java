@@ -26,35 +26,19 @@ package be.yildizgames.common.authentication;
 
 import be.yildizgames.common.exception.business.BusinessException;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author Grégory Van den Borre
  */
 public class TemporaryAccountValidationException extends BusinessException {
 
-    private final List<String> errors;
 
-    private final List<AuthenticationError> exceptions = new ArrayList<>();
+    private final List<AuthenticationError> exceptions;
 
-    public TemporaryAccountValidationException(final CredentialException ex) {
-        super(ex);
-        this.errors = ex.getErrors()
-                .stream()
-                .map(e -> e.messageKey)
-                .collect(Collectors.toList());
-        this.exceptions.addAll(ex.getErrors());
-    }
-
-    public TemporaryAccountValidationException(final String error) {
-        super(error);
-        this.errors = List.of(error);
-    }
-
-    public List<String> getErrors() {
-        return errors;
+    public TemporaryAccountValidationException(List<AuthenticationError> exceptions) {
+        super("Validation exception");
+        this.exceptions = exceptions;
     }
 
     public List<AuthenticationError> getExceptions() {

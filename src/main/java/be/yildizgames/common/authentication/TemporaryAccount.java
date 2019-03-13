@@ -24,6 +24,8 @@
 
 package be.yildizgames.common.authentication;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -79,16 +81,19 @@ public class TemporaryAccount {
     }
 
     private static void validate(String login, String password, String email) {
+        List<AuthenticationError> errors = new ArrayList<>();
         try {
             CHECKER.check(login, password);
         } catch (CredentialException e) {
-            throw new TemporaryAccountValidationException(e);
+            errors.addAll(e.getErrors());
         }
         if(email == null) {
-            throw new TemporaryAccountValidationException("email.mandatory");
+            errors.add(AuthenticationError.MAIL_EMPTY);
+        } else if(!EMAIL_PATTERN.matcher(email).matches()) {
+            errors.add(AuthenticationError.MAIL_INVALID);
         }
-        if(!EMAIL_PATTERN.matcher(email).matches()) {
-            throw new TemporaryAccountValidationException("email.invalid");
+        if(!errors.isEmpty()) {
+            throw new TemporaryAccountValidationException(errors);
         }
     }
 
