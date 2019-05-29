@@ -25,10 +25,12 @@
   -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
   <modelVersion>4.0.0</modelVersion>
-  <name>Yildiz Common Authentication</name>
+
+  <name>Yildiz-Engine Common Authentication</name>
   <description>Common authentication library for the yildiz project, contains authentication, validation, encryption...</description>
-  <url>https://bitbucket.org/yildiz-engine-team/common-authentication</url>
+  <url>https://engine.yildiz-games.be</url>
 
   <artifactId>common-authentication</artifactId>
   <version>1.1.7-SNAPSHOT</version>
@@ -36,9 +38,9 @@
   <packaging>jar</packaging>
   <inceptionYear>2017</inceptionYear>
   <scm>
-    <connection>scm:git:https://bitbucket.org/yildiz-engine-team/common-authentication</connection>
-    <developerConnection>scm:git:https://bitbucket.org/yildiz-engine-team/common-authentication</developerConnection>
-    <url>https://bitbucket.org/yildiz-engine-team/common-authentication</url>
+    <connection>scm:git:https://github.com/yildiz-online/common-authentication</connection>
+    <developerConnection>scm:git:https://github.com/yildiz-online/common-authentication</developerConnection>
+    <url>https://github.com/yildiz-online/common-authentication</url>
   </scm>
   <parent>
     <groupId>be.yildiz-games</groupId>
