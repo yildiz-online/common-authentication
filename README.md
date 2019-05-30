@@ -11,6 +11,11 @@ The common authentication library is a set of utility and helper classes to hand
 * Password encryption
 * ...
 
+## How to contribute
+
+If your issue is not already in the issue tracker, please create a new entry with a clear title and description.
+If you can fix it, please fork the repository, and create a pull request with the change.
+
 ## Requirements
 
 To build this module, you will need a java 9 JDK and Maven 3.
@@ -21,7 +26,7 @@ Project website:
 https://engine.yildiz-games.be
 
 Issue tracker:
-https://yildiz.atlassian.net/browse/YCA
+https://github.com/yildiz-online/common-authentication/issues
 
 Wiki:
 https://yildiz.atlassian.net/wiki
