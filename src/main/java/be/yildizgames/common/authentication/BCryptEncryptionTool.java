@@ -24,8 +24,9 @@
 
 package be.yildizgames.common.authentication;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
 import org.mindrot.jbcrypt.BCrypt;
+
+import java.util.Objects;
 
 /**
  * Encryption implementation using the BCrypt algorithm.
@@ -44,7 +45,7 @@ public class BCryptEncryptionTool implements EncryptionTool {
      */
     public BCryptEncryptionTool(String salt) {
         super();
-        ImplementationException.throwForNull(salt);
+        Objects.requireNonNull(salt);
         this.salt = salt;
     }
 
@@ -57,14 +58,14 @@ public class BCryptEncryptionTool implements EncryptionTool {
 
     @Override
     public final String encrypt(final String toEncrypt) {
-        ImplementationException.throwForNull(toEncrypt);
+        Objects.requireNonNull(toEncrypt);
         return BCrypt.hashpw(toEncrypt, this.salt);
     }
 
     @Override
     public final boolean check(final String encrypted, final String clear) {
-        ImplementationException.throwForNull(encrypted);
-        ImplementationException.throwForNull(clear);
+        Objects.requireNonNull(encrypted);
+        Objects.requireNonNull(clear);
         return BCrypt.checkpw(clear, encrypted);
     }
 }

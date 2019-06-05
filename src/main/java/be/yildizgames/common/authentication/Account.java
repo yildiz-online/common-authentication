@@ -24,7 +24,7 @@
 
 package be.yildizgames.common.authentication;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
+import java.util.Objects;
 
 /**
  * Data representation for a user account.
@@ -59,10 +59,10 @@ public class Account {
 
     public Account(final String id, final String login, final String password, final String email, final long lastConnectionDate) {
         super();
-        ImplementationException.throwForNull(id);
-        ImplementationException.throwForNull(login);
-        ImplementationException.throwForNull(password);
-        ImplementationException.throwForNull(email);
+        Objects.requireNonNull(id);
+        Objects.requireNonNull(login);
+        Objects.requireNonNull(password);
+        Objects.requireNonNull(email);
         this.id = id;
         this.login = login;
         this.password = password;

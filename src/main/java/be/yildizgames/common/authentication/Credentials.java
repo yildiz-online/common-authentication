@@ -24,7 +24,7 @@
 
 package be.yildizgames.common.authentication;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
+import java.util.Objects;
 
 /**
  * Store a login and a password. Use the {@link SimpleAuthenticationChecker} to create
@@ -46,8 +46,8 @@ public class Credentials {
     public final String password;
 
     Credentials(String login, String password) {
-        ImplementationException.throwForNull(login);
-        ImplementationException.throwForNull(password);
+        Objects.requireNonNull(login);
+        Objects.requireNonNull(password);
         this.login = login;
         this.password = password;
     }

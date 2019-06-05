@@ -24,7 +24,6 @@
 
 package be.yildizgames.common.authentication;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -53,22 +52,22 @@ public class AccountTest {
 
         @Test
         public void nullId() {
-            Assertions.assertThrows(ImplementationException.class, () -> new Account(null,"myLogin", "myPassword", "myEmail", 10));
+            Assertions.assertThrows(NullPointerException.class, () -> new Account(null,"myLogin", "myPassword", "myEmail", 10));
         }
 
         @Test
         public void nullLogin() {
-            Assertions.assertThrows(ImplementationException.class, () -> new Account("01",null, "myPassword", "myEmail", 10));
+            Assertions.assertThrows(NullPointerException.class, () -> new Account("01",null, "myPassword", "myEmail", 10));
         }
 
         @Test
         public void nullPassword() {
-            Assertions.assertThrows(ImplementationException.class, () -> new Account("01","myLogin", null, "myEmail", 10));
+            Assertions.assertThrows(NullPointerException.class, () -> new Account("01","myLogin", null, "myEmail", 10));
         }
 
         @Test
         public void nullEmail() {
-            Assertions.assertThrows(ImplementationException.class, () -> new Account("01","myLogin", "myPassword", null, 10));
+            Assertions.assertThrows(NullPointerException.class, () -> new Account("01","myLogin", "myPassword", null, 10));
         }
 
     }

@@ -23,9 +23,7 @@
  */
 package be.yildizgames.common.authentication.protocol.mapper.exception;
 
-import be.yildizgames.common.exception.technical.TechnicalException;
-
-public class AuthenticationMappingException extends TechnicalException {
+public class AuthenticationMappingException extends IllegalStateException {
 
     public AuthenticationMappingException(String message, Exception cause) {
         super(message, cause);

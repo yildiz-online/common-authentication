@@ -24,14 +24,12 @@
 
 package be.yildizgames.common.authentication;
 
-import be.yildizgames.common.exception.business.BusinessException;
-
 import java.util.List;
 
 /**
  * @author Grégory Van den Borre
  */
-public class TemporaryAccountValidationException extends BusinessException {
+public class TemporaryAccountValidationException extends IllegalArgumentException {
 
 
     private final List<AuthenticationError> exceptions;

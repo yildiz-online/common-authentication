@@ -24,7 +24,6 @@
 
 package be.yildizgames.common.authentication;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -54,7 +53,7 @@ public class BCryptEncryptionToolTest {
 
         @Test
         public void nullParameter() {
-            Assertions.assertThrows(ImplementationException.class, () -> new BCryptEncryptionTool(null));
+            Assertions.assertThrows(NullPointerException.class, () -> new BCryptEncryptionTool(null));
         }
     }
 
@@ -71,7 +70,7 @@ public class BCryptEncryptionToolTest {
         @Test
         public void nullParameter() {
             EncryptionTool enc = new BCryptEncryptionTool(SALT);
-            Assertions.assertThrows(ImplementationException.class, () -> enc.encrypt(null));
+            Assertions.assertThrows(NullPointerException.class, () -> enc.encrypt(null));
         }
     }
 
@@ -87,13 +86,13 @@ public class BCryptEncryptionToolTest {
         @Test
         public void nullEncrypted() {
             EncryptionTool enc = new BCryptEncryptionTool();
-            Assertions.assertThrows(ImplementationException.class, () -> enc.check(null, CLEAR));
+            Assertions.assertThrows(NullPointerException.class, () -> enc.check(null, CLEAR));
         }
 
         @Test
         public void nullClear() {
             EncryptionTool enc = new BCryptEncryptionTool();
-            Assertions.assertThrows(ImplementationException.class, () -> enc.check(ENCRYPTED, null));
+            Assertions.assertThrows(NullPointerException.class, () -> enc.check(ENCRYPTED, null));
         }
     }
 }

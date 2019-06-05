@@ -24,8 +24,7 @@
 
 package be.yildizgames.common.authentication;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
-
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 /**
@@ -91,8 +90,8 @@ public final class AuthenticationRules {
      *
      */
     public AuthenticationRules(int loginMaxLength, int passMaxLength, int loginMinLength, int passMinLength, Pattern loginPattern, Pattern passPattern) {
-        ImplementationException.throwForNull(loginPattern);
-        ImplementationException.throwForNull(passPattern);
+        Objects.requireNonNull(loginPattern);
+        Objects.requireNonNull(passPattern);
         if(loginMaxLength < loginMinLength) {
             throw new IllegalArgumentException("Login max value must be greater or equals to login min value.");
         }
