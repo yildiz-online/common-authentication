@@ -157,54 +157,54 @@ public class TokenTest {
         @Test
         public void isSameObject() {
             Token t = Token.authenticated(PlayerId.valueOf(6), 12, 10);
-            assertTrue(t.equals(t));
+            assertEquals(t, t);
         }
 
         @Test
         public void isSame() {
             Token t = Token.authenticated(PlayerId.valueOf(6), 12, 10);
             Token t2 = Token.authenticated(PlayerId.valueOf(6), 12, 10);
-            assertTrue(t.equals(t2));
+            assertEquals(t, t2);
         }
 
         @Test
         public void withDifferentPlayer() {
             Token t = Token.authenticated(PlayerId.valueOf(6), 12, 10);
             Token t2 = Token.authenticated(PlayerId.valueOf(7), 12, 10);
-            assertFalse(t.equals(t2));
+            assertNotEquals(t, t2);
         }
 
         @Test
         public void withDifferentTime() {
             Token t = Token.authenticated(PlayerId.valueOf(6), 12, 10);
             Token t2 = Token.authenticated(PlayerId.valueOf(6), 25, 10);
-            assertTrue(t.equals(t2));
+            assertEquals(t, t2);
         }
 
         @Test
         public void withDifferentKey() {
             Token t = Token.authenticated(PlayerId.valueOf(6), 12, 10);
             Token t2 = Token.authenticated(PlayerId.valueOf(6), 12, 11);
-            assertFalse(t.equals(t2));
+            assertNotEquals(t, t2);
         }
 
         @Test
         public void withNull() {
             Token t = Token.authenticated(PlayerId.valueOf(6), 12, 10);
-            assertFalse(t.equals(null));
+            assertNotEquals(null, t);
         }
 
         @Test
         public void withOtherType() {
             Token t = Token.authenticated(PlayerId.valueOf(6), 12, 10);
-            assertFalse(t.equals("ok"));
+            assertNotEquals("ok", t);
         }
 
         @Test
         public void withDifferentStatus() {
             Token t = Token.any(PlayerId.valueOf(6), 10, Token.Status.AUTHENTICATED);
             Token t2 = Token.any(PlayerId.valueOf(6), 10, Token.Status.NOT_AUTHENTICATED);
-            assertFalse(t.equals(t2));
+            assertNotEquals(t, t2);
         }
     }
 

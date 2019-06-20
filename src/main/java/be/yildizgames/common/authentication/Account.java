@@ -43,7 +43,7 @@ public class Account {
     private final String login;
 
     /**
-     * Uuser password.
+     * User password.
      */
     private final String password;
 

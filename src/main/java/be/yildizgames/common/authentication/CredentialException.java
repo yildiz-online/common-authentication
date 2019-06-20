@@ -24,8 +24,6 @@
 
 package be.yildizgames.common.authentication;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -51,7 +49,7 @@ public final class CredentialException extends Exception {
      * @throws NullPointerException if errors is null.
      */
     public CredentialException(List<AuthenticationError> errors) {
-        this.errors = Collections.unmodifiableList(new ArrayList<>(errors));
+        this.errors = List.copyOf(errors);
     }
 
     public List<AuthenticationError> getErrors() {
