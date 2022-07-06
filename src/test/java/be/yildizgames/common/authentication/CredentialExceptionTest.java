@@ -35,27 +35,27 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * @author Grégory Van den Borre
  */
-public class CredentialExceptionTest {
+class CredentialExceptionTest {
 
     @Nested
-    public class Constructor {
+    class Constructor {
 
         @Test
-        public void happyFlow() {
+        void happyFlow() {
             new CredentialException(new ArrayList<>());
         }
 
         @Test
-        public void withNullParameter() {
+        void withNullParameter() {
             assertThrows(NullPointerException.class, () -> new CredentialException(null));
         }
     }
 
     @Nested
-    public class GetErrors {
+    class GetErrors {
 
         @Test
-        public void happyFlow() {
+        void happyFlow() {
             CredentialException ce = new CredentialException(List.of(
                     AuthenticationError.INVALID_LOGIN_CHAR,
                     AuthenticationError.INVALID_PASS_CHAR));
@@ -65,7 +65,7 @@ public class CredentialExceptionTest {
         }
 
         @Test
-        public void ensureImmutable() {
+        void ensureImmutable() {
             CredentialException ce = new CredentialException(List.of(
                     AuthenticationError.INVALID_LOGIN_CHAR,
                     AuthenticationError.INVALID_PASS_CHAR));
@@ -73,7 +73,7 @@ public class CredentialExceptionTest {
         }
 
         @Test
-        public void ensureCopy() {
+        void ensureCopy() {
             List<AuthenticationError> l = new ArrayList<>();
             l.add(AuthenticationError.INVALID_LOGIN_CHAR);
             l.add(AuthenticationError.INVALID_PASS_CHAR);

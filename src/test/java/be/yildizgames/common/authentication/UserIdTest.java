@@ -28,47 +28,47 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-public class UserIdTest {
+class UserIdTest {
 
     @Nested
-    public class Constructor {
+    class Constructor {
 
         @Test
-        public void happyFlow() {
+        void happyFlow() {
             UserId id = new UserId(15);
             Assertions.assertEquals(15, id.value);
         }
 
         @Test
-        public void anonymous() {
+        void anonymous() {
             Assertions.assertEquals(-1, UserId.ANONYMOUS.value);
         }
 
         @Test
-        public void zero() {
+        void zero() {
             UserId id = new UserId(0);
             Assertions.assertEquals(0, id.value);
         }
 
         @Test
-        public void negative() {
+        void negative() {
             UserId id = new UserId(-5);
             Assertions.assertEquals(-5, id.value);
         }
     }
 
     @Nested
-    public class HashCode {
+    class HashCode {
 
         @Test
-        public void same() {
+        void same() {
             UserId id = new UserId(5);
             UserId id2 = new UserId(5);
             Assertions.assertEquals(id.hashCode(), id2.hashCode());
         }
 
         @Test
-        public void notSame() {
+        void notSame() {
             UserId id = new UserId(5);
             UserId id2 = new UserId(6);
             Assertions.assertNotEquals(id.hashCode(), id2.hashCode());
@@ -76,36 +76,36 @@ public class UserIdTest {
     }
 
     @Nested
-    public class Equals {
+    class Equals {
 
         @Test
-        public void equal() {
+        void equal() {
             UserId id = new UserId(5);
             UserId id2 = new UserId(5);
             Assertions.assertEquals(id, id2);
         }
 
         @Test
-        public void notEqual() {
+        void notEqual() {
             UserId id = new UserId(5);
             UserId id2 = new UserId(6);
             Assertions.assertNotEquals(id, id2);
         }
 
         @Test
-        public void sameInstance() {
+        void sameInstance() {
             UserId id = new UserId(5);
             Assertions.assertEquals(id, id);
         }
 
         @Test
-        public void nullValue() {
+        void nullValue() {
             UserId id = new UserId(5);
             Assertions.assertNotEquals(id, null);
         }
 
         @Test
-        public void differentType() {
+        void differentType() {
             UserId id = new UserId(5);
             Assertions.assertNotEquals(id, 5);
         }

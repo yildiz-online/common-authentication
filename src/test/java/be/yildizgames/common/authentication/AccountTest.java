@@ -31,17 +31,17 @@ import org.junit.jupiter.api.Test;
 /**
  * @author Grégory Van den Borre
  */
-public class AccountTest {
+class AccountTest {
 
-    public static Account givenAnAccount() {
+    static Account givenAnAccount() {
         return new Account("01", "me", "myPass", "me@me.com", 100);
     }
 
     @Nested
-    public class Constructor {
+    class Constructor {
 
         @Test
-        public void happyFlow() {
+        void happyFlow() {
             Account account = new Account("01", "myLogin", "myPassword", "myEmail", 10);
             Assertions.assertEquals("01", account.getId());
             Assertions.assertEquals("myLogin", account.getLogin());
@@ -51,23 +51,23 @@ public class AccountTest {
         }
 
         @Test
-        public void nullId() {
-            Assertions.assertThrows(NullPointerException.class, () -> new Account(null,"myLogin", "myPassword", "myEmail", 10));
+        void nullId() {
+            Assertions.assertThrows(NullPointerException.class, () -> new Account(null, "myLogin", "myPassword", "myEmail", 10));
         }
 
         @Test
-        public void nullLogin() {
-            Assertions.assertThrows(NullPointerException.class, () -> new Account("01",null, "myPassword", "myEmail", 10));
+        void nullLogin() {
+            Assertions.assertThrows(NullPointerException.class, () -> new Account("01", null, "myPassword", "myEmail", 10));
         }
 
         @Test
-        public void nullPassword() {
-            Assertions.assertThrows(NullPointerException.class, () -> new Account("01","myLogin", null, "myEmail", 10));
+        void nullPassword() {
+            Assertions.assertThrows(NullPointerException.class, () -> new Account("01", "myLogin", null, "myEmail", 10));
         }
 
         @Test
-        public void nullEmail() {
-            Assertions.assertThrows(NullPointerException.class, () -> new Account("01","myLogin", "myPassword", null, 10));
+        void nullEmail() {
+            Assertions.assertThrows(NullPointerException.class, () -> new Account("01", "myLogin", "myPassword", null, 10));
         }
 
     }

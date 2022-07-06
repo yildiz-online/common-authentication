@@ -22,7 +22,7 @@
  *
  */
 
-module be.yildizgames.common.authentication {
+open module be.yildizgames.common.authentication {
     requires be.yildizgames.common.mapping;
     requires be.yildizgames.common.model;
     requires be.yildizgames.common.mapping.model;

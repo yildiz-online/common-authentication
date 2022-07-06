@@ -34,7 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * @author Grégory Van den Borre
  */
-public class BCryptEncryptionToolTest {
+class BCryptEncryptionToolTest {
 
     private static final String SALT = "$2a$10$7.PJwtiY7Y2heDKA7AoVF.";
 
@@ -43,54 +43,54 @@ public class BCryptEncryptionToolTest {
     private static final String ENCRYPTED = "$2a$10$7.PJwtiY7Y2heDKA7AoVF.tZnqlnekLweOYrV0qf3WOGiQ6nlKEk.";
 
     @Nested
-    public class Constructor {
+    class Constructor {
 
         @Test
-        public void happyFlow() {
+        void happyFlow() {
             EncryptionTool enc = new BCryptEncryptionTool("azerty");
             Assertions.assertNotNull(enc);
         }
 
         @Test
-        public void nullParameter() {
+        void nullParameter() {
             Assertions.assertThrows(NullPointerException.class, () -> new BCryptEncryptionTool(null));
         }
     }
 
     @Nested
-    public class Encrypt {
+    class Encrypt {
 
         @Test
-        public void happyFlow() {
+        void happyFlow() {
             EncryptionTool enc = new BCryptEncryptionTool(SALT);
             String result = enc.encrypt(CLEAR);
             assertEquals(ENCRYPTED, result);
         }
 
         @Test
-        public void nullParameter() {
+        void nullParameter() {
             EncryptionTool enc = new BCryptEncryptionTool(SALT);
             Assertions.assertThrows(NullPointerException.class, () -> enc.encrypt(null));
         }
     }
 
     @Nested
-    public class Check {
+    class Check {
 
         @Test
-        public void happyFlow() {
+        void happyFlow() {
             EncryptionTool enc = new BCryptEncryptionTool();
             assertTrue(enc.check(enc.encrypt(CLEAR), CLEAR));
         }
 
         @Test
-        public void nullEncrypted() {
+        void nullEncrypted() {
             EncryptionTool enc = new BCryptEncryptionTool();
             Assertions.assertThrows(NullPointerException.class, () -> enc.check(null, CLEAR));
         }
 
         @Test
-        public void nullClear() {
+        void nullClear() {
             EncryptionTool enc = new BCryptEncryptionTool();
             Assertions.assertThrows(NullPointerException.class, () -> enc.check(ENCRYPTED, null));
         }
