@@ -46,7 +46,6 @@ public class CredentialsMapper implements ObjectMapper<Credentials> {
 
     @Override
     public Credentials from(String s) {
-        assert s != null;
         try {
             String[] v = s.split(Separator.VAR_SEPARATOR);
             return Credentials.unchecked(v[0], v[1]);
@@ -57,7 +56,6 @@ public class CredentialsMapper implements ObjectMapper<Credentials> {
 
     @Override
     public String to(Credentials authentication) {
-        assert authentication != null;
         return authentication.login + Separator.VAR_SEPARATOR + authentication.password;
     }
 }

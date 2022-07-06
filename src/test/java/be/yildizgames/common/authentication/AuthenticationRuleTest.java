@@ -33,6 +33,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AuthenticationRuleTest {
 
+    private static final Pattern NUMBER = Pattern.compile("\\d*");
+    private static final Pattern ALPHA = Pattern.compile("[a-z]*");
+
     @Test
     void testAuthenticationRulesDefault() {
         assertEquals(20, AuthenticationRules.DEFAULT.loginMaxLength);
@@ -45,47 +48,47 @@ class AuthenticationRuleTest {
 
     @Test
     void testAuthenticationRules() {
-        AuthenticationRules r = new AuthenticationRules(10, 15, 8, 6, Pattern.compile("[0-9]*"), Pattern.compile("[a-z]*"));
+        AuthenticationRules r = new AuthenticationRules(10, 15, 8, 6, NUMBER, ALPHA);
         assertEquals(10, r.loginMaxLength);
         assertEquals(15, r.passMaxLength);
         assertEquals(6, r.passMinLength);
         assertEquals(8, r.loginMinLength);
-        assertEquals("[0-9]*", r.loginPattern.pattern());
+        assertEquals("\\d*", r.loginPattern.pattern());
         assertEquals("[a-z]*", r.passPattern.pattern());
     }
 
     @Test
     void testLoginMaxSmallerZero() {
-        assertThrows(IllegalArgumentException.class, () -> new AuthenticationRules(-1, 15, 3, 5, Pattern.compile("[0-9]*"), Pattern.compile("[a-z]*")));
+        assertThrows(IllegalArgumentException.class, () -> new AuthenticationRules(-1, 15, 3, 5, NUMBER, ALPHA));
     }
 
     @Test
     void testLoginMinSmallerZero() {
-        assertThrows(IllegalArgumentException.class, () -> new AuthenticationRules(10, 15, -1, 5, Pattern.compile("[0-9]*"), Pattern.compile("[a-z]*")));
+        assertThrows(IllegalArgumentException.class, () -> new AuthenticationRules(10, 15, -1, 5, NUMBER, ALPHA));
     }
 
     @Test
     void testPassMinSmallerZero() {
-        assertThrows(IllegalArgumentException.class, () -> new AuthenticationRules(10, 15, 8, -1, Pattern.compile("[0-9]*"), Pattern.compile("[a-z]*")));
+        assertThrows(IllegalArgumentException.class, () -> new AuthenticationRules(10, 15, 8, -1, NUMBER, ALPHA));
     }
 
     @Test
     void testLoginMaxSmallerMin() {
-        assertThrows(IllegalArgumentException.class, () -> new AuthenticationRules(2, 15, 3, 5, Pattern.compile("[0-9]*"), Pattern.compile("[a-z]*")));
+        assertThrows(IllegalArgumentException.class, () -> new AuthenticationRules(2, 15, 3, 5, NUMBER, ALPHA));
     }
 
     @Test
     void testPassMaxSmallerMin() {
-        assertThrows(IllegalArgumentException.class, () -> new AuthenticationRules(10, 2, 3, 5, Pattern.compile("[0-9]*"), Pattern.compile("[a-z]*")));
+        assertThrows(IllegalArgumentException.class, () -> new AuthenticationRules(10, 2, 3, 5, NUMBER, ALPHA));
     }
 
     @Test
     void testNullLoginPattern() {
-        assertThrows(NullPointerException.class, () -> new AuthenticationRules(10, 15, 3, 5, null, Pattern.compile("[a-z]*")));
+        assertThrows(NullPointerException.class, () -> new AuthenticationRules(10, 15, 3, 5, null, ALPHA));
     }
 
     @Test
     void testNullPassPattern() {
-        assertThrows(NullPointerException.class, () -> new AuthenticationRules(10, 15, 3, 5, Pattern.compile("[a-z]*"), null));
+        assertThrows(NullPointerException.class, () -> new AuthenticationRules(10, 15, 3, 5, ALPHA, null));
     }
 }

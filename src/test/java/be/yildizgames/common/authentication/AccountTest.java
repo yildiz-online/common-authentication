@@ -43,11 +43,11 @@ class AccountTest {
         @Test
         void happyFlow() {
             Account account = new Account("01", "myLogin", "myPassword", "myEmail", 10);
-            Assertions.assertEquals("01", account.getId());
-            Assertions.assertEquals("myLogin", account.getLogin());
-            Assertions.assertEquals("myPassword", account.getPassword());
-            Assertions.assertEquals("myEmail", account.getEmail());
-            Assertions.assertEquals(10, account.getLastConnectionDate());
+            Assertions.assertEquals("01", account.id());
+            Assertions.assertEquals("myLogin", account.login());
+            Assertions.assertEquals("myPassword", account.password());
+            Assertions.assertEquals("myEmail", account.email());
+            Assertions.assertEquals(10, account.lastConnectionDate());
         }
 
         @Test

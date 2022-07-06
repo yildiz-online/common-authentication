@@ -24,41 +24,15 @@
 
 package be.yildizgames.common.authentication.protocol;
 
+import java.util.Objects;
+
 /**
  * @author Grégory Van den Borre
  */
-public class Authentication {
-
-    public final String login;
-
-    public final String password;
+public record Authentication(String login, String password) {
 
     public Authentication(String login, String password) {
-        super();
-        assert login != null;
-        assert password != null;
-        this.login = login;
-        this.password = password;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        Authentication that = (Authentication) o;
-
-        return login.equals(that.login) && password.equals(that.password);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = login.hashCode();
-        result = 31 * result + password.hashCode();
-        return result;
+        this.login = Objects.requireNonNull(login);
+        this.password = Objects.requireNonNull(password);
     }
 }

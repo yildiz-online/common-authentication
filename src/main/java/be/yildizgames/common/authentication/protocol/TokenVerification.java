@@ -26,40 +26,15 @@ package be.yildizgames.common.authentication.protocol;
 
 import be.yildizgames.common.model.PlayerId;
 
+import java.util.Objects;
+
 /**
  * @author Grégory Van den Borre
  */
-public class TokenVerification {
-
-    public final PlayerId userId;
-
-    public final boolean authenticated;
+public record TokenVerification(PlayerId userId, boolean authenticated) {
 
     public TokenVerification(PlayerId userId, boolean authenticated) {
-        super();
-        assert userId != null;
-        this.userId = userId;
+        this.userId = Objects.requireNonNull(userId);
         this.authenticated = authenticated;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        TokenVerification that = (TokenVerification) o;
-
-        return authenticated == that.authenticated && userId.equals(that.userId);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = userId.hashCode();
-        result = 31 * result + (authenticated ? 1 : 0);
-        return result;
     }
 }

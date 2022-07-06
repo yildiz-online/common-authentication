@@ -36,79 +36,24 @@ class UserIdTest {
         @Test
         void happyFlow() {
             UserId id = new UserId(15);
-            Assertions.assertEquals(15, id.value);
+            Assertions.assertEquals(15, id.value());
         }
 
         @Test
         void anonymous() {
-            Assertions.assertEquals(-1, UserId.ANONYMOUS.value);
+            Assertions.assertEquals(-1, UserId.ANONYMOUS.value());
         }
 
         @Test
         void zero() {
             UserId id = new UserId(0);
-            Assertions.assertEquals(0, id.value);
+            Assertions.assertEquals(0, id.value());
         }
 
         @Test
         void negative() {
             UserId id = new UserId(-5);
-            Assertions.assertEquals(-5, id.value);
+            Assertions.assertEquals(-5, id.value());
         }
     }
-
-    @Nested
-    class HashCode {
-
-        @Test
-        void same() {
-            UserId id = new UserId(5);
-            UserId id2 = new UserId(5);
-            Assertions.assertEquals(id.hashCode(), id2.hashCode());
-        }
-
-        @Test
-        void notSame() {
-            UserId id = new UserId(5);
-            UserId id2 = new UserId(6);
-            Assertions.assertNotEquals(id.hashCode(), id2.hashCode());
-        }
-    }
-
-    @Nested
-    class Equals {
-
-        @Test
-        void equal() {
-            UserId id = new UserId(5);
-            UserId id2 = new UserId(5);
-            Assertions.assertEquals(id, id2);
-        }
-
-        @Test
-        void notEqual() {
-            UserId id = new UserId(5);
-            UserId id2 = new UserId(6);
-            Assertions.assertNotEquals(id, id2);
-        }
-
-        @Test
-        void sameInstance() {
-            UserId id = new UserId(5);
-            Assertions.assertEquals(id, id);
-        }
-
-        @Test
-        void nullValue() {
-            UserId id = new UserId(5);
-            Assertions.assertNotEquals(id, null);
-        }
-
-        @Test
-        void differentType() {
-            UserId id = new UserId(5);
-            Assertions.assertNotEquals(id, 5);
-        }
-    }
-
 }

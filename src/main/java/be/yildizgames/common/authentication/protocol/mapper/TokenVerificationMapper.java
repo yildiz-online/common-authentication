@@ -49,7 +49,6 @@ public class TokenVerificationMapper implements ObjectMapper<TokenVerification> 
 
     @Override
     public TokenVerification from(String s) {
-        assert s != null;
         try {
             String[] v = s.split(Separator.VAR_SEPARATOR);
             return new TokenVerification(PlayerIdMapper.getInstance().from(v[0]), BooleanMapper.getInstance().from(v[1]));
@@ -60,9 +59,8 @@ public class TokenVerificationMapper implements ObjectMapper<TokenVerification> 
 
     @Override
     public String to(TokenVerification tokenVerification) {
-        assert tokenVerification != null;
-        return PlayerIdMapper.getInstance().to(tokenVerification.userId)
+        return PlayerIdMapper.getInstance().to(tokenVerification.userId())
                 + Separator.VAR_SEPARATOR
-                + BooleanMapper.getInstance().to(tokenVerification.authenticated);
+                + BooleanMapper.getInstance().to(tokenVerification.authenticated());
     }
 }

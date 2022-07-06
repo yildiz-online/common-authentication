@@ -46,7 +46,6 @@ public class TemporaryAccountMapper implements ObjectMapper<TemporaryAccount> {
 
     @Override
     public TemporaryAccount from(final String s) {
-        assert s != null;
         try {
             String[] v = s.split(Separator.OBJECTS_SEPARATOR);
             return TemporaryAccount.create(v[0], v[1], v[2], v[3]);
@@ -57,7 +56,6 @@ public class TemporaryAccountMapper implements ObjectMapper<TemporaryAccount> {
 
     @Override
     public String to(final TemporaryAccount dto) {
-        assert dto != null;
         return dto.getLogin()
                 + Separator.OBJECTS_SEPARATOR
                 + dto.getPassword()

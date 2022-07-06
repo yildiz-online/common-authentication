@@ -47,7 +47,6 @@ public class TemporaryAccountResultMapper implements ObjectMapper<TemporaryAccou
 
     @Override
     public TemporaryAccountCreationResultDto from(String s) {
-        assert s != null;
         TemporaryAccountCreationResultDto dto = new TemporaryAccountCreationResultDto();
         try {
             String[] v = s.split(Separator.OBJECTS_SEPARATOR);
@@ -66,7 +65,6 @@ public class TemporaryAccountResultMapper implements ObjectMapper<TemporaryAccou
 
     @Override
     public String to(TemporaryAccountCreationResultDto dto) {
-        assert dto != null;
         return BooleanMapper.getInstance().to(dto.isAccountExisting())
                 + Separator.OBJECTS_SEPARATOR
                 + BooleanMapper.getInstance().to(dto.isEmailExisting())

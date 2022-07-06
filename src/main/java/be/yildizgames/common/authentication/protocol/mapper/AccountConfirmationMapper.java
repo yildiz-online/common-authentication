@@ -46,7 +46,6 @@ public class AccountConfirmationMapper implements ObjectMapper<AccountConfirmati
 
     @Override
     public AccountConfirmationDto from(String s) {
-        assert s != null;
         try {
             String[] v = s.split(Separator.OBJECTS_SEPARATOR);
             return new AccountConfirmationDto(v[0], v[1]);
@@ -57,7 +56,6 @@ public class AccountConfirmationMapper implements ObjectMapper<AccountConfirmati
 
     @Override
     public String to(AccountConfirmationDto dto) {
-        assert dto != null;
-        return dto.getLogin() + Separator.OBJECTS_SEPARATOR + dto.getToken();
+        return dto.login() + Separator.OBJECTS_SEPARATOR + dto.token();
     }
 }

@@ -27,44 +27,5 @@ package be.yildizgames.common.authentication.protocol;
 /**
  * @author Grégory Van den Borre
  */
-public class AccountConfirmationDto {
-
-    private final String login;
-
-    private final String token;
-
-    public AccountConfirmationDto(String login, String token) {
-        this.login = login;
-        this.token = token;
-    }
-
-    public String getLogin() {
-        return this.login;
-    }
-
-    public String getToken() {
-        return this.token;
-    }
-
-
-    @Override
-    public int hashCode() {
-        int result = login.hashCode();
-        result = 31 * result + token.hashCode();
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        AccountConfirmationDto that = (AccountConfirmationDto) o;
-
-        return login.equals(that.login) && token.equals(that.token);
-    }
+public record AccountConfirmationDto(String login, String token) {
 }

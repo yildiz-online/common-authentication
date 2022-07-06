@@ -59,7 +59,8 @@ class TokenTest {
 
         @Test
         void withNegativeTime() {
-            assertThrows(IllegalArgumentException.class, () -> Token.authenticated(PlayerId.valueOf(6), -1, 10));
+            var p = PlayerId.valueOf(6);
+            assertThrows(IllegalArgumentException.class, () -> Token.authenticated(p, -1, 10));
         }
     }
 

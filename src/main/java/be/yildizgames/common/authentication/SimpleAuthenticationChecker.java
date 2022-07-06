@@ -26,6 +26,7 @@ package be.yildizgames.common.authentication;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 /**
@@ -43,12 +44,12 @@ public class SimpleAuthenticationChecker implements AuthenticationChecker {
 
     /**
      * Create a new AuthenticationChecker from rules.
+     *
      * @param parameters List of rules to apply when authenticating, cannot be null.
-     * @throws AssertionError if parameters is null.
+     * @throws NullPointerException if parameters is null.
      */
     public SimpleAuthenticationChecker(AuthenticationRules parameters) {
-        assert parameters != null;
-        this.parameters = parameters;
+        this.parameters = Objects.requireNonNull(parameters);
     }
 
     @Override
@@ -68,10 +69,10 @@ public class SimpleAuthenticationChecker implements AuthenticationChecker {
      * @param login  Login to check.
      * @param errors List to store the errors.
      * @return True if the login is valid.
-     * @throws AssertionError If errors is null.
+     * @throws NullPointerException If errors is null.
      */
     private boolean checkLogin(final String login, final List<AuthenticationError> errors) {
-        assert errors != null;
+        Objects.requireNonNull(errors);
         boolean noError = true;
         if (login == null || login.isEmpty()) {
             errors.add(AuthenticationError.LOGIN_EMPTY);

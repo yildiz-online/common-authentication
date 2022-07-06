@@ -24,36 +24,10 @@
 
 package be.yildizgames.common.authentication;
 
-import java.util.Objects;
-
 /**
  * @author Grégory Van den Borre
  */
-public class UserId {
+public record UserId(int value) {
 
     public static final UserId ANONYMOUS = new UserId(-1);
-
-    public final int value;
-
-    public UserId(int value) {
-        super();
-        this.value = value;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        UserId userId = (UserId) o;
-        return value == userId.value;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(value);
-    }
 }

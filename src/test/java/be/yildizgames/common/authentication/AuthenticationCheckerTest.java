@@ -57,7 +57,7 @@ final class AuthenticationCheckerTest {
 
         @Test
         void withNull() {
-            assertThrows(AssertionError.class, () -> new SimpleAuthenticationChecker(null));
+            assertThrows(NullPointerException.class, () -> new SimpleAuthenticationChecker(null));
         }
     }
 
